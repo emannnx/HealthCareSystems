@@ -1,0 +1,602 @@
+.profile-background{
+    display: flex;
+    justify-content: center;
+    margin-top: 5%;
+    /* background-color: #F4F7FA; */
+    height: 100%;
+    margin-bottom: 8%;
+}
+
+@media screen and (max-width: 768px) {
+    .profile-background {
+        margin-top: 0;
+        margin-bottom: 0;
+        padding: 0;
+    }
+  
+}
+
+.profile-container {
+    max-width: 900px;
+    padding: 30px;  
+    background-color: white;
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    overflow: hidden; /* prevent inner overflows */
+  }  
+
+.health-header {
+    /* padding: 1rem 1.5rem; px-6 py-4 */
+    border-bottom: 1px solid #e5e7eb; /* border-gray-200 */
+  }
+  
+  .health-title {
+    font-size: 1.5rem; /* text-2xl */
+    font-weight: bold;
+    color: #111827; /* text-gray-900 */
+    margin: 0;
+  }
+  
+  .health-subtitle {
+    color: #4b5563; /* text-gray-600 */
+    margin-top: 0.25rem;
+  }
+
+  
+  .basic-info {
+    margin-top: 1rem;
+  }
+  
+  .section-title {
+    font-size: 1.125rem; /* text-lg */
+    font-weight: 600;
+    color: #111827; /* text-gray-900 */
+    margin-bottom: 1rem;
+  }
+  
+  .form-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+  
+  @media (min-width: 768px) {
+    .form-grid {
+      grid-template-columns: repeat(2, 1fr); /* md:grid-cols-2 */
+    }
+  }
+  
+  .form-label {
+    display: block;
+    font-size: 0.875rem; /* text-sm */
+    font-weight: 500;
+    color: #374151; /* text-gray-700 */
+    margin-bottom: 0.25rem;
+  }
+  
+  .form-input {
+    display: block;
+    width: 100%;
+    padding: 0.5rem 0.75rem;
+    border: 1px solid #d1d5db;
+    border-radius: 0.375rem;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+    font-size: 0.875rem;
+    outline: none;
+  }
+  
+  .form-input:focus {
+    border-color: #3b82f6; /* health-blue substitute */
+    box-shadow: 0 0 0 1px #3b82f6;
+  }
+  
+  .profile-measurements {
+    margin-bottom: 2rem;
+  }
+  
+  .section-title {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: #111827;
+    margin-bottom: 1rem;
+  }
+  
+  .measurements-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+  
+  @media (min-width: 768px) {
+    .measurements-grid {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+  
+  .input-group {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .input-label {
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: #374151;
+    margin-bottom: 0.25rem;
+  }
+  
+  .input-field {
+    /* width: 100%; */
+    padding: 0.5rem 0.75rem;
+    border: 1px solid #d1d5db;
+    border-radius: 0.375rem;
+    font-size: 0.875rem;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+  }
+  
+  .input-field:focus {
+    outline: none;
+    border-color: #2563eb;
+    box-shadow: 0 0 0 1px #2563eb;
+  }
+  
+  .input-field.readonly {
+    background-color: #f3f4f6;
+  }
+  
+  .note {
+    margin-top: 0.25rem;
+    font-size: 0.75rem;
+    color: #6b7280;
+  }
+
+  .blood-info-section {
+    margin-bottom: 1.5rem;
+  }
+  
+  .blood-info-title {
+    font-size: 1.125rem;
+    font-weight: 600;
+    color: #1f2937; /* text-gray-900 */
+    margin-bottom: 1rem;
+  }
+  
+  .blood-info-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+  
+  @media (min-width: 768px) {
+    .blood-info-grid {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+  
+  .blood-info-field label {
+    display: block;
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: #374151; /* text-gray-700 */
+    margin-bottom: 0.25rem;
+  }
+  
+  .blood-info-field select,
+  .blood-info-field input {
+    display: block;
+    width: 100%;
+    padding: 0.5rem 0.75rem;
+    font-size: 0.875rem;
+    border: 1px solid #d1d5db; /* border-gray-300 */
+    border-radius: 0.375rem;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+    outline: none;
+  }
+  
+  .blood-info-field select:focus,
+  .blood-info-field input:focus {
+    border-color: #2563eb; /* health-blue equivalent */
+    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.3);
+  }
+  
+
+  /* General styling */
+.medical-conditions {
+    font-family: Arial, sans-serif;
+    margin-bottom: 20px;
+  }
+  
+  .section-title {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: #1a202c; /* Text gray-900 */
+    margin-bottom: 1rem;
+  }
+  
+  .section-description {
+    font-size: 0.875rem;
+    color: #4a5568; /* Text gray-600 */
+    margin-bottom: 1.5rem;
+  }
+  
+  /* Grid layout for medical conditions */
+  .conditions-grid {
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+  }
+  
+  /* Styling for each condition item */
+  .condition-item {
+    display: flex;
+    align-items: center;
+  }
+  
+  .condition-checkbox {
+    width: 1rem;
+    height: 1rem;
+    border: 1px solid #cbd5e0; /* Gray border */
+    border-radius: 0.25rem;
+    transition: border-color 0.2s ease;
+    accent-color: #3182ce; /* Health blue */
+  }
+  
+  .condition-checkbox:focus {
+    ring-color: #3182ce; /* Health blue */
+  }
+  
+  .condition-label {
+    margin-left: 0.5rem;
+    font-size: 0.875rem;
+    color: #1a202c; /* Text gray-900 */
+    cursor: pointer;
+  }
+  
+  @media (min-width: 768px) {
+    .conditions-grid {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+
+  
+  /* Styling for the container */
+.add-condition-container {
+    margin-top: 1rem;
+  }
+  
+  /* Label styling */
+  label {
+    display: block;
+    font-size: 0.875rem; /* Text small */
+    font-weight: 500;
+    color: #4a5568; /* Text gray-700 */
+    margin-bottom: 0.25rem;
+  }
+  
+  /* Flex container for input and button */
+  form {
+    display: flex;
+  }
+  
+  /* Input field styling */
+  .condition-input {
+    display: block;
+    flex: 1;
+    padding: 0.5rem 0.75rem;
+    border: 1px solid #e2e8f0; /* Gray-300 */
+    border-radius: 0.375rem 0 0 0.375rem; /* Rounded left side */
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+    font-size: 0.875rem;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  }
+  
+  .condition-input:focus {
+    outline: none;
+    border-color: #3182ce; /* Health blue */
+    box-shadow: 0 0 0 2px rgba(49, 130, 206, 0.5); /* Focus ring with health blue */
+  }
+  
+  /* Button styling */
+  .add-button {
+    display: inline-flex;
+    align-items: center;
+    padding: 0.5rem 1rem;
+    border: 1px solid transparent;
+    font-size: 0.875rem;
+    font-weight: 500;
+    border-radius: 0 0.375rem 0.375rem 0;
+    background-color: #3182ce; /* Health blue */
+    color: white;
+    transition: background-color 0.2s ease, box-shadow 0.2s ease;
+  }
+  
+  .add-button:hover {
+    background-color: #2b6cb0; /* Darker blue for hover */
+  }
+  
+  .add-button:focus {
+    outline: none;
+    box-shadow: 0 0 0 2px rgba(49, 130, 206, 0.5); /* Focus ring with health blue */
+  }
+  
+  @media (min-width: 640px) {
+    .add-condition-container {
+      margin-top: 1.5rem;
+    }
+  }
+  
+  .bg-health-light-blue {
+    background-color: #A3D2CA; /* Example light blue */
+  }
+  
+  .text-health-blue {
+    color: #1A535C; /* Example blue */
+  }
+  
+  .text-sm {
+    font-size: 0.875rem;
+  }
+  
+  .font-medium {
+    font-weight: 500;
+  }
+  
+  .text-gray-700 {
+    color: #4A5568;
+  }
+  
+  .mb-2 {
+    margin-bottom: 0.5rem;
+  }
+  
+  .rounded-full {
+    border-radius: 9999px;
+  }
+  
+  .px-3 {
+    padding-left: 0.75rem;
+    padding-right: 0.75rem;
+  }
+  
+  .py-1 {
+    padding-top: 0.25rem;
+    padding-bottom: 0.25rem;
+  }
+  
+  .flex {
+    display: flex;
+  }
+
+  .flex-wrap {
+    flex-wrap: wrap;
+  }
+  
+  .items-center {
+    align-items: center;
+  }
+  
+  .gap-2 {
+    gap: 0.5rem;
+  }
+  
+  .ml-2 {
+    margin-left: 0.5rem;
+  }
+  
+  .hover\:text-blue-700:hover {
+    color: #2B6CB0;
+  }
+
+  .profile-containers {
+    margin-bottom: 16px;
+    flex: 1;
+  }
+  
+  .checkbox-container {
+    display: flex;
+    align-items: center;
+    margin-bottom: 16px;
+  }
+  
+  .checkbox {
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+  
+    height: 16px;
+    width: 16px;
+    border: 1px solid #d1d5db; /* gray-300 */
+    border-radius: 4px;
+    background-color: #F4F7FA;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    position: relative;
+  }
+  
+  /* Show the tick (checkmark) when checked */
+  .checkbox:checked::after {
+    content: '';
+    position: absolute;
+    top: -1px;
+    left: 4px;
+    width: 5px;
+    height: 11px;
+    border: solid #1d4ed8;
+    border-width: 0 2px 2px 0;
+    transform: rotate(45deg);
+  }
+  
+  
+  .checkbox:focus {
+    outline: 2px solid #1d4ed8; /* health-blue */
+  }
+  
+  
+  .checkbox-label {
+    margin-left: 8px;
+    display: block;
+    font-size: 1.125rem; /* text-lg */
+    font-weight: 600; /* font-semibold */
+    color: #1f2937; /* gray-900 */
+  }
+  
+  .custom-textarea {
+    display: block;
+    width: 100%;
+    padding: 0.5rem 0.75rem; /* px-3 py-2 */
+    border: 1px solid #d1d5db; /* gray-300 */
+    border-radius: 0.375rem; /* rounded-md */
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05); /* shadow-sm */
+    font-size: 0.75rem; /* sm:text-sm */
+    background-color: #F4F7FA;
+    resize: vertical;
+  
+    transition: border 0.2s ease, box-shadow 0.2s ease;
+  }
+  
+  .custom-textarea:focus {
+    outline: none;
+    border-color: #1d4ed8; /* health-blue */
+    box-shadow: 0 0 0 3px rgba(29, 78, 216, 0.3); /* focus:ring-health-blue */
+  }
+  
+
+  .profile-containerss {
+    padding-top: 24px;
+    border-top: 1px solid #e5e7eb; /* gray-200 */
+  }
+  
+  .button-container {
+    display: flex;
+    justify-content: flex-end;
+  }
+  
+  .save-button {
+    display: inline-flex;
+    align-items: center;
+    padding: 12px 24px;
+    border: 1px solid transparent;
+    font-size: 1rem; /* text-base */
+    font-weight: 500; /* font-medium */
+    border-radius: 0.375rem; /* rounded-md */
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+    color: white;
+    background-color: #1d4ed8; /* health-blue */
+    transition: background-color 0.2s ease;
+  }
+  
+  .save-button:hover {
+    background-color: #1e40af; /* blue-700 */
+  }
+  
+  .save-button:focus {
+    outline: none;
+    ring: 2px solid #1d4ed8; /* health-blue */
+    ring-offset: 2px;
+  }
+  
+  .save-button:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+  
+  .save-icon {
+    margin-right: 8px; /* mr-2 */
+    height: 20px; /* h-5 */
+    width: 20px; /* w-5 */
+  }
+  
+  /* Apply background color to all input and checkbox elements */
+input[type="text"],
+input[type="number"],
+input[type="email"],
+input[type="password"],
+input[type="date"],
+input[type="checkbox"],
+select,
+textarea {
+  background-color: #F4F7FA;
+  color: #111827;
+}
+
+.form-input,
+.input-field,
+.condition-input,
+.blood-info-field input,
+.blood-info-field select {
+  background-color: #F4F7FA;
+  color: #111827;
+  
+}
+
+.condition-checkbox,
+.checkbox {
+  background-color: #F4F7FA;
+  color: #111827;
+}
+
+.physical-measurements,
+.blood-info-container {
+  display: flex;
+  flex-wrap: wrap; /* allow wrapping */
+  gap: 20px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.measurement-input,
+.blood-info-field {
+  flex: 1 1 200px; /* responsive basis */
+  min-width: 200px;
+  box-sizing: border-box;
+}
+
+.toast {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background-color: #4caf50;
+    color: white;
+    padding: 12px 20px;
+    border-radius: 8px;
+    font-size: 14px;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease, transform 0.3s ease;
+    transform: translateY(20px);
+    z-index: 1000;
+  }
+  
+  .toast.show {
+    opacity: 1;
+    pointer-events: auto;
+    transform: translateY(0);
+  }
+  
+  .tag {
+    display: flex;
+    align-items: center;
+    padding: 0.5rem 0.5rem 0.5rem 1rem;
+    background-color: #e2e8f0; /* light gray bg */
+    color: #1a202c; /* dark text */
+    border-radius: 9999px;
+    font-size: 0.875rem;
+    font-weight: 500;
+    white-space: nowrap;
+  }
+  
+
+  .remove-tag {
+    margin-right: 0;
+    background: transparent;
+    border: none;
+    color: #4a5568;
+    font-size: 1rem;
+    cursor: pointer;
+    padding: 0rem 1rem;
+  }  
+
+  .remove-tag:hover{
+    color: #2B6CB0;
+  }

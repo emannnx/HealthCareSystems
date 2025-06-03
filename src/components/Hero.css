@@ -1,0 +1,42 @@
+.hero-container {
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    background-color: white;
+    color: #020817;
+    width: 100%;
+  }
+
+  .hero-container.dark {
+    background-color: #020817;
+    color: #f0f0f0;
+  }
+
+  .hero-container.overlay-open {
+    filter: blur(5px);
+    pointer-events: none;
+  }
+  
+  .overlay-open .hero-container {
+    position: relative;
+    z-index: 999;
+  }
+
+  .dark-mode {
+    background-color: #121212;
+    color: white;
+  }
+
+  .h > * {
+    padding-bottom: 5rem;
+  }
+  
+  .h > *:first-child {
+    padding-top: 5rem;
+  }
+
+  /* .h > *:last-child {
+    padding-bottom: 0;
+  } */
+

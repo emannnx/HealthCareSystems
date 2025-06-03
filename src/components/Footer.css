@@ -1,0 +1,306 @@
+.footer-wrapper{
+    display: flex;
+    justify-content: center;
+    background-color: #1F2937;
+  }
+
+  .footer {
+    padding: 2rem;
+    color: #e5e7eb;
+    display: block;
+    width: 70%;
+  }
+
+  .top-footer{
+    display: flex;
+    justify-content: space-between;
+    text-align: left;
+  }
+  
+  .footer-logo-section {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  
+  .footer-logo-link {
+    display: flex;
+    align-items: center;
+    margin-bottom: 1rem;
+    text-decoration: none;
+  }
+  
+  .footer-logo-blue {
+    color: #3b82f6;
+    font-weight: bold;
+    font-size: 2rem;
+  }
+  
+  .footer-logo-green {
+    color: #10b981;
+    font-weight: bold;
+    font-size: 2rem;
+  }
+  
+  .footer-description {
+    color: #d1d5db;
+    margin-bottom: 1rem;
+    max-width: 300px;
+  }
+  
+  .footer-socials {
+    display: flex;
+    gap: 1rem;
+  }
+  
+  .footer-social-link {
+    color: #9ca3af;
+    transition: color 0.3s;
+  }
+  
+  .footer-social-link:hover {
+    color: #ffffff;
+  }
+  
+  .footer-icon {
+    height: 1.5rem;
+    width: 1.5rem;
+  }
+  
+  .sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+  }
+
+  .footer-explore {
+    grid-column: span 1;
+  }
+  
+  .footer-heading {
+    font-size: 1.125rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+  }
+  
+  .footer-links {
+    list-style-type: none;
+    padding: 0;
+  }
+  
+  .footer-links li {
+    margin-bottom: 0.5rem;
+  }
+  
+  .footer-link {
+    color: #d1d5db;
+    text-decoration: none;
+    transition: color 0.3s ease;
+    font-weight: 100;
+  }
+  
+  .footer-link:hover {
+    color: #ffffff;
+  }
+  
+  .footer-quick-links {
+    grid-column: span 1;
+  }
+  
+  .text-health-blue {
+    color: #0062cc;
+  }
+  
+  .h-6 {
+    height: 1.5rem;
+  }
+  
+  .w-6 {
+    width: 1.5rem;
+  }
+  
+  .mr-2 {
+    margin-right: 0.5rem;
+  }
+  
+  .md:col-span-1 {
+    gap: 10;
+  }
+  
+  .space-y-4 li {
+    margin-bottom: 1rem;
+    text-align: left;
+  }
+
+  @media screen and (max-width: 768px) {
+    .space-y-4 {
+      margin-bottom: 0.5rem;
+      margin-left: 0;
+      padding-left: 0;
+      width: 100%;
+    }
+
+    .space-y-4 li{
+        margin-bottom: 1rem;
+        margin-left: 0;
+        padding-left: 0;
+        width: 100%;
+      }
+    
+  }
+  
+  .flex {
+    display: flex;
+    align-items: center;
+    text-align: left;
+  }
+  
+  .text-lg {
+    font-size: 1.125rem;
+  }
+  
+  .font-semibold {
+    font-weight: 600;
+  }
+  
+  .mb-4 {
+    margin-bottom: 1rem;
+  }
+  
+  .mt-8 {
+    margin-top: 2rem;
+  }
+  
+  .border-t {
+    border-top: 1px solid #4a4a4a;
+  }
+  
+  .border-gray-700 {
+    border-color: #4a4a4a;
+  }
+  
+  .pt-8 {
+    padding-top: 2rem;
+  }
+  
+  .flex {
+    display: flex;
+  }
+  
+  .flex-col {
+    flex-direction: column;
+  }
+  
+  .md\:flex-row {
+    flex-direction: row;
+  }
+  
+  .justify-between {
+    justify-content: space-between;
+  }
+  
+  .text-base {
+    font-size: 1rem;
+  }
+  
+  .text-gray-400 {
+    color: #9ca3af;
+  }
+  
+  .mb-4 {
+    margin-bottom: 1rem;
+    margin-left: 11%;
+  }
+
+  @media (max-width: 768px) { 
+    .mb-4 {
+      margin-left: 0;
+    }
+  }
+  
+  .mbs-4 {
+    margin-bottom: 1rem;
+  }
+  
+  .md\:mb-0 {
+    margin-bottom: 0;
+  }
+  
+  .space-x-6 {
+    gap: 1.5rem;
+  }
+  
+  
+  .text-gray-400 {
+    color: #9ca3af;
+  }
+  
+  .hover\:text-white:hover {
+    color: white;
+  }
+
+  @media (max-width: 768px) {
+    .footer {
+      padding: 1rem;
+      width: 90%;
+    }
+
+    .footer-wrapper {
+      display: block;
+    }
+  
+    .top-footer {
+      flex-direction: column;
+      text-align: left;
+      align-items: left !important;
+    }
+  
+    .footer-logo-section,
+    .footer-explore,
+    .footer-quick-links {
+      align-items: left;
+      text-align: left;
+      margin-bottom: 2rem;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .footer-contact {
+      text-align: left;
+      align-items: flex-start;
+      display: flex;
+      flex-direction: column;
+    }
+  }
+  
+  @media (max-width: 768px) { 
+    .md\:col-span-1 {
+      text-align: left;
+      align-items: flex-start;
+      display: flex;
+      flex-direction: column;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .footer-bottom {
+      display: block;
+      flex-direction: unset;
+      justify-content: unset;
+      align-items: unset;
+    }
+
+    .footer-bottom > * {
+        margin-bottom: 1rem; /* Adjust the gap size here */
+      }
+    
+      /* Optional: Remove margin on last item */
+      .footer-bottom > *:last-child {
+        margin-bottom: 0;
+      }
+  }
+  
+  
+  

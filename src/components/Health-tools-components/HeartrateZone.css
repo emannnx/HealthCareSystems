@@ -1,0 +1,73 @@
+.health-calculators {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+  }
+  
+  .heart-card {
+    border-radius: 12px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    background-color: #F5F8FB;
+    color: #333;
+    overflow: hidden;
+    border-top: 1px solid #333;
+  }
+  
+  .heart-card-header,
+  .heart-card-content,
+  .heart-card-footer {
+    padding: 16px;
+  }
+
+  .heart-card-contenta{
+    margin: 0;
+    width: 100%;
+  }
+  
+  .heart-card-header {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+
+  .heart-card-footerssa{
+    background-color: none;
+  }
+  
+  .heart-card-title {
+    font-size: 20px;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    margin: 0;
+    gap: 12px;
+  }
+  
+  .heart-card-description {
+    font-size: 14px;
+    color: #666;
+    margin: 0;
+    padding-top: 14px
+  }
+  
+  .heart-card-status {
+    font-size: 14px;
+    color: #999;
+    margin: 0;
+  }
+  
+  .heart-card-footer-note {
+    font-size: 12px;
+    color: #999;
+    margin: 0;
+  }
+  
+  .heart-icon {
+    stroke: #007bff;
+    margin: 0;
+  }
+
+  .heart-card-des-div{
+    height: auto;
+  }
+  

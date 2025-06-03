@@ -1,0 +1,33 @@
+.mmood-streak-container {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    background-color: #8BD4A7;
+    padding: 0.5rem 1rem;
+    border-radius: 9999px;
+  }
+  
+  .mmood-streak-icon {
+    width: 1.25rem;
+    height: 1.25rem;
+  }
+  
+  .mmood-streak-icon--active {
+    color: #f97316; /* orange-500 */
+  }
+  
+  .mmood-streak-icon--inactive {
+    color: #9ca3af; /* muted/gray foreground */
+  }
+  
+  .mmood-streak-count {
+    font-size: 0.875rem;
+    font-weight: 500;
+  }
+  
+  .mmood-streak-label {
+    font-size: 0.875rem;
+    color: #6b7280; /* muted/gray text */
+    margin-left: 0.25rem;
+  }
+  

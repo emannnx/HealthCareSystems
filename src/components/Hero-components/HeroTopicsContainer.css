@@ -1,0 +1,161 @@
+.health-topic-container {
+    text-align: center;
+    display: block;
+  }
+
+  .health-topic-container.dark .health-topic-title{
+    color: #ffffff;
+  }
+  
+  .health-topic-title {
+    font-size: 1.875rem;
+    font-weight: 800;
+    color: #111827; 
+  }
+  
+  @media (min-width: 640px) {
+    .health-topic-title {
+      font-size: 2.25rem;
+    }
+  }
+  
+  .health-topic-description {
+    margin-top: 12px;
+    max-width: 672px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 4rem;
+    font-size: 1.25rem;
+    color: #6b7280;
+  }
+  
+  @media (min-width: 640px) {
+    .health-topic-description {
+      margin-top: 16px;
+    }
+  }
+
+  .health-topics-wrapper {
+    width: 100%;
+    margin: 0;
+  }
+  
+  .health-topics-container {
+    margin-top: 3rem;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); /* responsive grid */
+    gap: 2rem;
+    width: 80%;
+    margin: 0 auto;
+  }
+  
+
+  .health-topics-wrapper.dark .card-hover{
+    background-color: #111827;
+  }
+
+  .health-topics-wrapper.dark .card-title{
+    color: #ffffff;
+  }
+  
+
+    @media (min-width: 768px) {
+        .health-topics-container {
+        grid-template-columns: repeat(2, 1fr);
+        }
+    }
+  
+  @media (min-width: 640px) {
+    .health-topics-container {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+  
+  @media (min-width: 1024px) {
+    .health-topics-container {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+  
+  .card-hover {
+    display: flex;
+    flex-direction: column;
+    background-color: white;
+    border-radius: 0.5rem;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    transition: transform 0.3s ease-in-out;
+  }
+  
+  .card-hover:hover {
+    transform: scale(1.05);
+  }
+  
+  .card-contents {
+    padding: 2rem 1.5rem;
+    flex: 1;
+    text-align: left;
+  }
+  
+  .icon-container {
+    margin-bottom: 1rem;
+    background-color: #b6d5f6;
+    border-radius: 50%;
+    width: 4rem;
+    height: 4rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .icon-containers {
+    margin-bottom: 1rem;
+    background-color: #b6d5f6;
+    border-radius: 50%;
+    width: 4rem;
+    height: 4rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: left;
+  }
+  
+  .icon-heart {
+    width: 2rem;
+    height: 2rem;
+    color: #3b82f6;
+  }
+  
+  .card-title {
+    font-size: 1.25rem;
+    font-weight: bold;
+    color: #1f2937;
+    margin-bottom: 0.5rem;
+  }
+  
+  .card-description {
+    color: #4b5563;
+  }
+  
+  .card-footer {
+    padding: 0.75rem 1.5rem; 
+    width: 100%;
+    background-color: #b6d5f6;
+  }
+  
+  .card-footers {
+    padding: 0.75rem 1.5rem 1rem 4.5rem; 
+    width: 100%;
+    background-color: #b6d5f6;
+  }
+  
+  .explore-text {
+    color: #3b82f6;
+    font-weight: 600;
+  }
+  
+  .explore-texts {
+    color: #3b82f6;
+    font-weight: 600;
+    /* padding-left: 22px; */
+  }

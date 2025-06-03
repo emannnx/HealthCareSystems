@@ -1,0 +1,747 @@
+.medication-tracker-container {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 2.7rem;
+}
+
+.medication-tracker-header,
+.medication-card-grid,
+.medication-heading,
+.tabs-containers,
+.tab-cont {
+  width: 80%;
+  max-width: 1200px;
+}
+
+@media (max-width: 768px) {
+    .medication-tracker-header, .medication-card-grid, .medication-heading {
+      width: 100%;
+      padding-left: 1rem;
+      padding-right: 1rem;
+    }
+  }
+
+/* Header */
+.medication-tracker-header {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  margin-bottom: 2rem;
+  animation: fadeIn 0.5s ease-in-out;
+  color: black;
+}
+
+@media (min-width: 768px) {
+  .medication-tracker-header {
+    flex-direction: row;
+    align-items: center;
+  }
+}
+
+.medication-tracker-title {
+  font-size: 1.875rem;
+  font-weight: bold;
+  color: var(--foreground);
+  transition: color 0.3s ease;
+}
+
+.medication-tracker-subtitle {
+  margin-top: 0.5rem;
+  color: var(--muted-foreground);
+  transition: color 0.3s ease;
+}
+
+.medication-tracker-actions {
+  display: flex;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+@media (min-width: 768px) {
+  .medication-tracker-actions {
+    margin-top: 0;
+  }
+}
+
+.reminder-button,
+.add-medication-button {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.875rem;
+  font-weight: 500;
+  padding: 0.5rem 0.5rem;
+  border-radius: 0.375rem;
+  height: 2.5rem;
+  transition: background-color 0.3s, color 0.3s;
+  background-color: var(--background);
+  color: inherit;
+}
+
+.reminder-button{
+  border: 1px solid #ccc;
+}
+
+.reminder-button:hover {
+  background-color: var(--accent);
+  color: var(--accent-foreground);
+}
+
+.add-medication-button {
+  background-color: #0ea2f1;
+  color: #fff;
+}
+
+.add-medication-button:hover {
+  background-color: rgba(59, 130, 246, 0.9);
+}
+
+.icon {
+  width: 1rem;
+  height: 1rem;
+  flex-shrink: 0;
+  pointer-events: none;
+}
+
+/* Headings */
+.medication-heading {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: var(--text-foreground, #000);
+  margin-top: 2rem;
+  margin-bottom: 1rem;
+  transition: color 0.3s;
+  animation: medication-fade-in 0.5s ease;
+}
+
+/* Card Grid */
+.medication-card-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+  margin-bottom: 2rem;
+  animation: medication-card-slide-up 0.5s ease;
+}
+
+@media (min-width: 640px) {
+  .medication-card-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 1024px) {
+  .medication-card-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+/* Card Styles */
+.medication-card {
+  background-color: var(--card-bg, #fff);
+  color: var(--card-text, #000);
+  border: 1px solid #ccc;
+  border-radius: 0.5rem;
+  box-shadow: 0 0 4px rgba(0,0,0,0.05);
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.medication-card-header {
+  display: flex;
+  flex-direction: column;
+  gap: 0.375rem;
+  padding: 1.5rem;
+  padding-bottom: 0rem;
+}
+
+.medication-card-title {
+  font-size: 1.125rem;
+  font-weight: 600;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 0;
+}
+
+.medication-card-content {
+  padding: 1.5rem;
+  padding-top: 0;
+}
+
+.medication-card-footer {
+  display: flex;
+  justify-content: space-between;
+  padding: 1.5rem;
+  padding-top: 0;
+}
+
+.medication-card-value {
+  font-size: 1.875rem;
+  font-weight: bold;
+  padding: 0;
+  margin: 0;
+}
+
+.medication-card-subtext {
+  font-size: 0.875rem;
+  color: gray;
+  margin: 0;
+}
+
+.medication-card-icon {
+  width: 1.25rem;
+  height: 1.25rem;
+  margin-right: 0.5rem;
+}
+
+.medication-card-text-primary {
+  color: #2563eb;
+}
+
+.medication-card-text-secondary {
+  color: #16a34a;
+}
+
+/* Card Buttons */
+.medication-card-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.875rem;
+  font-weight: 500;
+  border-radius: 0.375rem;
+  height: 2.25rem;
+  padding: 0 0.75rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.medication-card-button-outline {
+  border: 1px solid #ccc;
+  background-color: #fff;
+  color: #333;
+}
+
+.medication-card-button-outline:hover {
+  background-color: #f0f0f0;
+}
+
+.medication-card-button-primary {
+  background-color: #0ea2f1;
+  color: #fff;
+  border: none;
+}
+
+.medication-card-button-primary:hover {
+  background-color: #1e4ed8;
+}
+
+/* Tabs */
+.tabs-containers {
+  margin-bottom: 3rem;
+}
+
+.tabs-list {
+    display: flex;                /* horizontal line */
+    height: 2.5rem;
+    align-items: center;
+    justify-content: flex-start; /* left align */
+    border-radius: 0.375rem;
+    background-color: #e0e0e0;
+    /* padding: 0.25rem; */
+    color: #6b7280;
+    gap: 0.5rem;
+    overflow-x: auto;            /* horizontal scroll if needed */
+    scrollbar-width: thin;
+    scrollbar-color: #a0aec0 transparent;
+    white-space: nowrap;         /* prevent wrapping */
+  }
+  
+  /* Scrollbar for WebKit browsers */
+  .tabs-list::-webkit-scrollbar {
+    height: 6px;
+  }
+  .tabs-list::-webkit-scrollbar-thumb {
+    background-color: #a0aec0;
+    border-radius: 3px;
+  }
+  
+  /* Media query example to adjust padding or font size on small screens */
+  @media (max-width: 768x) {
+    .tabs-list {
+      padding: 0.25rem 0.5rem;
+    }
+  }
+  
+
+/* .tab-triggers {
+  padding: 0.5rem 1rem;
+  border-radius: 0.375rem;
+  font-weight: 500;
+  border: 1px solid #ccc;
+  background-color: #fff;
+  color: #333;
+  cursor: pointer;
+  transition: background-color 0.3s;
+} */
+
+.tab-triggers.active {
+  background-color: #2563eb;
+  color: #fff;
+  border-color: #2563eb;
+}
+
+.tab-triggers:hover {
+  background-color: #f0f0f0;
+}
+
+.tabs-content {
+  border: 1px solid #ccc;
+  border-radius: 0.375rem;
+  background-color: #fff;
+  padding: 1rem;
+}
+
+/* Table */
+.medication-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.medication-table th,
+.medication-table td {
+  text-align: left;
+  padding: 0.75rem 1rem;
+  border-bottom: 1px solid #ddd;
+}
+
+.action-btn {
+  background: none;
+  border: none;
+  font-size: 1.25rem;
+  cursor: pointer;
+  line-height: 1;
+}
+
+/* Placeholders */
+.placeholder-text {
+  color: gray;
+  font-style: italic;
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes medication-fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes medication-card-slide-up {
+  from {
+    transform: translateY(12px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.tab-cont {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    margin-bottom: 2rem;
+    animation: fadeIn 0.5s ease-in-out;
+    justify-content: flex-start;
+    text-align: left;
+    align-items: flex-start;
+    /* width: 100%; */
+    overflow-x: visible; /* default */
+  }
+  
+  .tab-container-wrapper {
+    /* width: 100%; */
+    overflow-x: auto; /* Scroll horizontally if needed */
+    -webkit-overflow-scrolling: touch; /* smooth scrolling on iOS */
+  }
+  
+  .tabs-list {
+    display: flex;
+    flex-wrap: nowrap;
+    gap: 0.2rem;
+    padding: 0.25rem;
+    min-width: 100%;
+    background-color: #e0e0e0;
+    border-radius: 0.375rem;
+    color: #6b7280;
+    white-space: nowrap;
+    margin: 0;
+  }
+  
+  
+  
+  
+  .tab-triggers {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    white-space: nowrap;
+    border-radius: 0.125rem;
+    margin: 0;
+    padding-bottom: 0.2rem;
+    font-size: 0.9rem;
+    font-weight: 600;
+    background-color: transparent;
+    color: #6b7280;
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: none;
+    height: 100%;
+    text-align: center;
+    vertical-align: center;
+  }
+  
+  .tab-triggers:focus-visible {
+    outline: 2px solid #2563eb; /* ring-2 ring-blue-600 */
+    outline-offset: 2px;
+  }
+  
+  .tab-triggers.active {
+    background-color: #fff; /* background */
+    color: #111827; /* foreground */
+    box-shadow: 0 1px 2px rgba(0,0,0,0.1); /* shadow-sm */
+  }
+  
+  .tab-triggers:not(.active):hover {
+    background-color: #d1d5db; /* subtle hover */
+  }
+  
+  .tabpanel {
+    width: 100%;
+    margin-top: 8px; /* matches mt-2 */
+    outline-offset: 2px; /* similar to ring-offset */
+  }
+  
+  .tabpanel:focus-visible {
+    outline: 2px solid blue; /* substitute with your focus ring color */
+    outline-offset: 2px;
+  }
+  
+  
+  .table-wrapper {
+    position: relative;
+    width: 100%;
+    overflow-x: auto;
+  }
+  
+  .medication-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.875rem; /* text-sm */
+    caption-side: bottom;
+  }
+  
+  .medication-table thead tr {
+    border-bottom: 1px solid var(--border-color, #ccc);
+  }
+  
+  .medication-table tbody tr {
+    border-bottom: 1px solid var(--border-color, #ccc);
+    transition: background-color 0.3s;
+  }
+  
+  .medication-table tbody tr:hover {
+    background-color: rgba(107, 114, 128, 0.3); /* muted/50 */
+  }
+  
+  .medication-table tbody tr:focus-within,
+  .medication-table tbody tr[data-state="selected"] {
+    /* background-color: var(--muted-bg, #f0f0f0); */
+  }
+  
+  .medication-table th,
+  .medication-table td {
+    padding: 1rem 1rem;
+    text-align: left;
+    vertical-align: middle;
+    font-weight: normal;
+    color: var(--muted-foreground, #666);
+  }
+  
+  .medication-table th {
+    font-weight: 500;
+  }
+  
+  .font-medium {
+    font-weight: 600;
+  }
+  
+  .action-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    border-radius: 0.375rem;
+    font-size: 0.875rem;
+    font-weight: 500;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    width: 2.5rem; /* 10 in tailwind */
+    height: 2.5rem;
+    transition: background-color 0.2s, color 0.2s;
+    color: var(--text-primary, #333);
+  }
+  
+  .action-button:hover {
+    background-color: var(--accent-bg, #e0e0e0);
+    color: var(--accent-foreground, #111);
+  }
+  
+  .action-button:focus-visible {
+    outline: 2px solid var(--ring-color, #2563eb);
+    outline-offset: 2px;
+  }
+  
+  .icon {
+    pointer-events: none;
+    width: 1rem;
+    height: 1rem;
+    flex-shrink: 0;
+  }
+  
+  .sr-only {
+    position: absolute !important;
+    width: 1px !important;
+    height: 1px !important;
+    padding: 0 !important;
+    margin: -1px !important;
+    overflow: hidden !important;
+    clip: rect(0, 0, 0, 0) !important;
+    white-space: nowrap !important;
+    border: 0 !important;
+  }  
+
+  .table-header tr {
+    border-bottom: 1px solid #ddd;
+  }
+  
+  .table-row {
+    border-bottom: 1px solid #ddd;
+    transition: background-color 0.2s ease;
+  }
+  
+  .table-row:hover {
+    background-color: rgba(150, 150, 150, 0.2); /* muted hover effect */
+  }
+  
+  .table-head {
+    height: 3rem; /* 12 * 0.25rem */
+    padding: 0 1rem;
+    text-align: left;
+    vertical-align: middle;
+    font-weight: 500;
+    color: #6b7280; /* gray-500 from Tailwind for muted text */
+    user-select: none;
+  }
+  
+  .table-head-muted {
+    background-color: rgba(156, 163, 175, 0.3); /* muted bg for Thu */
+  }
+  
+  .med-table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  
+  .med-table-row {
+    border-bottom: 1px solid #ccc;
+    transition: background-color 0.3s ease;
+  }
+  
+  .med-table-row:hover {
+    background-color: #f3f3f3;
+  }
+  
+  .med-name {
+    padding: 12px;
+    font-weight: 600;
+    vertical-align: middle;
+  }
+  
+  .med-dose-cell {
+    padding: 12px;
+    text-align: center;
+    vertical-align: middle;
+  }
+  
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    border: none;
+    cursor: pointer;
+    background-color: #e0e0e0;
+    transition: background-color 0.2s ease;
+  }
+  
+  .btn:hover {
+    background-color: #c7c7c7;
+  }
+  
+  .btn-checked {
+    background-color: #4f46e5; /* Indigo */
+    color: white;
+  }
+  
+  .btn-checked:hover {
+    background-color: #4338ca;
+  }
+  
+  .btn-remove {
+    border: 1px solid #999;
+    background-color: white;
+    color: #333;
+  }
+  
+  .btn-remove:hover {
+    background-color: #f0f0f0;
+  }
+  
+  .icon-check,
+  .icon-x {
+    width: 16px;
+    height: 16px;
+    pointer-events: none;
+  }
+  
+  .btn-check-circle {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem; /* ~8px */
+    white-space: nowrap;
+    font-size: 0.875rem; /* text-sm */
+    font-weight: 500; /* font-medium */
+    height: 2rem; /* h-8 */
+    width: 2rem; /* w-8 */
+    border-radius: 9999px; /* rounded-full */
+    background-color: #34B463; /* fallback light gray */
+    color: #fff;
+    cursor: pointer;
+    border: none;
+    transition: background-color 0.2s ease;
+    position: relative;
+    outline-offset: 2px;
+  }
+  
+  .btn-check-circle:hover:not(:disabled) {
+    background-color: rgba(229, 231, 235, 0.9); /* bg-secondary/90 */
+  }
+  
+  .btn-check-circle:focus-visible {
+    outline: 2px solid var(--ring-color, #6366f1);
+    outline-offset: 2px;
+  }
+  
+  .btn-check-circle:disabled {
+    pointer-events: none;
+    opacity: 0.5;
+    cursor: default;
+  }
+  
+  /* SVG inside button */
+  .icon-check-circle {
+    width: 1rem; /* h-4 */
+    height: 1rem; /* w-4 */
+    flex-shrink: 0;
+    pointer-events: none;
+  }
+  
+  .btn-close {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    white-space: nowrap;
+    font-size: 0.875rem;
+    font-weight: 500;
+    height: 2rem;
+    width: 2rem;
+    border-radius: 9999px;
+    border: 1px solid #ccc;
+    background-color: #fff;
+    color: #000;
+    transition: background-color 0.2s, color 0.2s;
+    cursor: pointer;
+  }
+  
+  .btn-close:hover {
+    background-color: #f0f0f0;
+    color: #000;
+  }
+  
+  .btn-close:disabled {
+    opacity: 0.5;
+    pointer-events: none;
+  }
+  
+  .icon-close {
+    width: 1rem;
+    height: 1rem;
+    pointer-events: none;
+    flex-shrink: 0;
+  }
+  
+  .card-done {
+    border: 2px dashed #ccc;
+    border-radius: 0.5rem;
+    background-color: #f9f9f9;
+    color: #1f2937;
+    padding: 2rem;
+    text-align: center;
+    margin-bottom: 2rem;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.05);
+  }
+  
+  .icon-check {
+    width: 3rem;
+    height: 3rem;
+    color: #6b7280; /* secondary */
+    margin: 0 auto 1rem;
+    display: block;
+  }
+  
+  .done-heading {
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+  }
+  
+  .done-message {
+    color: #6b7280; /* muted-foreground */
+    font-size: 1rem;
+  }
+  
