@@ -360,6 +360,8 @@
   border-radius: 8px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
   overflow-y: auto;
+  margin-left: 3%;
+  padding-bottom: 1rem;
 }
 
 @media screen and (max-width: 768px) {
@@ -388,7 +390,6 @@
   border-radius: 4px;
   background-color: transparent;
   border: none;
-  margin-left: 3%;
 }
 
 .search-results {
@@ -436,7 +437,8 @@
 
 .search-input {
   width: 100%;
-  padding-left: 10px;
+  padding-left: 40px;
+  margin-left: 2rem;
   border-color: transparent;
   border-radius: 4px 0 0 4px;
   color: white; /* makes input text white */
@@ -444,7 +446,7 @@
 }
 
 .search-input::placeholder {
-  padding-left: 20px;
+  margin-left: 40px;
   font-size: 13px;
   color: #cccccc; /* light gray for placeholder */
 }

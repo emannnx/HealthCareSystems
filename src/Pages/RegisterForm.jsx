@@ -39,6 +39,7 @@ const RegisterForm = ({ onSuccess, onOpenAuth }) => {
         headers: {
           "Content-Type": "application/json",
         },
+        credentials: "include",
         body: JSON.stringify({
           username: formData.name,
           email: formData.email,

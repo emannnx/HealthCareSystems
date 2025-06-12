@@ -224,12 +224,15 @@ const Header = () => {
                     <path d="m21 21-4.3-4.3" />
                   </svg>
                   <input
-                    type="text"
-                    className="search-input"
-                    placeholder="Search health topics..."
-                    value={query}
-                    onChange={(e) => setQuery(e.target.value)}
-                  />
+  type="text"
+  id="health-topic-search"
+  form="health-search-form"
+  className="search-input"
+  placeholder="Search health topics..."
+  value={query}
+  onChange={(e) => setQuery(e.target.value)}
+/>
+
                 </div>
                 <button onClick={closeDialog} className="close-popup">
                   <svg
