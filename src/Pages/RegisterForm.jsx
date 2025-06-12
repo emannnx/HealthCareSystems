@@ -48,9 +48,6 @@ const RegisterForm = ({ onSuccess, onOpenAuth }) => {
       });
   
       if (response.ok) {
-        // ✅ Add delay before attempting login
-        await new Promise((resolve) => setTimeout(resolve, 1000)); // 500ms delay
-  
         const loginSuccess = await signIn(formData.email, formData.password);
         if (loginSuccess) {
           onSuccess?.();
