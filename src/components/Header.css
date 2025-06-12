@@ -26,6 +26,14 @@
   color: #eee;
 }
 
+.iconss{
+  width: 35xpx;
+  height: 35px;
+  color: #333;
+  margin-right: 0.5rem;
+  margin-top: 0.3rem;
+}
+
 .header.dark-mode .nav-links p,
 .header.dark-mode .nav-links a,
 .header.dark-mode .dropdown,

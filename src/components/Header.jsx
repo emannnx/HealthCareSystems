@@ -6,6 +6,7 @@ import { useDarkMode } from './DarkModeContext';
 import AuthModal from '../Pages/AuthModal';
 import NavbarMenu from './NavbarMenu';
 import { useAuth } from './AuthContext';
+import img from '../assets/favicon.png'; // Update with your logo path
 
 const Header = () => {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -91,12 +92,13 @@ const Header = () => {
         <div className="header-container">
           <div className="header-inner">
             <div className="header-left">
-              <div className="logo-container">
-                <Link to="/" className="logo-link">
+              <Link to="/" className="logo-container">
+                <div to="/" className="logo-link">
+                <img src={img} className='iconss'/>
                   <span className="logo-primary">Health</span>
                   <span className="logo-secondary">Hub</span>
-                </Link>
-              </div>
+                </div>
+              </Link>
 
               <div className={`nav-links ${menuOpen ? 'open' : ''}`}>
                 <Link to="/" className={`nav-link ${isActive('/') ? 'active-link' : ''}`}><p>Home</p></Link>
