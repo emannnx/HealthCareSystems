@@ -27,12 +27,12 @@ const RegisterForm = ({ onSuccess, onOpenAuth }) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
+  
     if (formData.password !== formData.confirmPassword) {
       alert("Passwords do not match.");
       return;
     }
-
+  
     try {
       const response = await fetch("https://healthhubuser.onrender.com/home/createuser", {
         method: "POST",
@@ -46,8 +46,11 @@ const RegisterForm = ({ onSuccess, onOpenAuth }) => {
           password: formData.password,
         }),
       });
-
+  
       if (response.ok) {
+        // ✅ Add delay before attempting login
+        await new Promise((resolve) => setTimeout(resolve, 1000)); // 500ms delay
+  
         const loginSuccess = await signIn(formData.email, formData.password);
         if (loginSuccess) {
           onSuccess?.();
@@ -66,7 +69,7 @@ const RegisterForm = ({ onSuccess, onOpenAuth }) => {
       alert("An error occurred. Please try again.");
     }
   };
-
+  
   return (
     <div className="register-form-container">
       <form className="register-form" onSubmit={handleSubmit}>
