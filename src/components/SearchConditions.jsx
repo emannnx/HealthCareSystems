@@ -172,7 +172,7 @@ const SearchConditions = () => {
     setResults([]);
 
     try {
-      const response = await fetch(`http://localhost:8091/searches/get/${searchTerm.trim()}`);
+      const response = await fetch(`https://searchcondition.onrender.com/searches/get/${searchTerm.trim()}`);
       if (!response.ok) {
         throw new Error('Condition not found or server error.');
       }

@@ -11,36 +11,32 @@ const MyDashboard = () => {
   const location = useLocation();
   const [refreshProfile, setRefreshProfile] = useState(false);
 
-  // Helper function to get days difference
   const timeAgo = (dateString) => {
     const updatedDate = new Date(dateString);
+    if (isNaN(updatedDate)) return 'Invalid update time';
+
     const now = new Date();
-    const diffMs = Math.abs(now - updatedDate);
-  
+    const diffMs = now.getTime() - updatedDate.getTime();
+
     const seconds = Math.floor(diffMs / 1000);
-    if (seconds < 60) {
-      return `${seconds} second${seconds !== 1 ? 's' : ''} ago`;
-    }
-  
     const minutes = Math.floor(seconds / 60);
-    if (minutes < 60) {
-      return `${minutes} minute${minutes !== 1 ? 's' : ''} ago`;
-    }
-  
     const hours = Math.floor(minutes / 60);
-    if (hours < 24) {
-      return `${hours} hour${hours !== 1 ? 's' : ''} ago`;
-    }
-  
     const days = Math.floor(hours / 24);
-    return `${days} day${days !== 1 ? 's' : ''} ago`;
+    const months = Math.floor(days / 30);
+    const years = Math.floor(days / 365);
+
+    if (seconds < 60) return `${seconds} second${seconds !== 1 ? 's' : ''} ago`;
+    if (minutes < 60) return `${minutes} minute${minutes !== 1 ? 's' : ''} ago`;
+    if (hours < 24) return `${hours} hour${hours !== 1 ? 's' : ''} ago`;
+    if (days < 30) return `${days} day${days !== 1 ? 's' : ''} ago`;
+    if (months < 12) return `${months} month${months !== 1 ? 's' : ''} ago`;
+    return `${years} year${years !== 1 ? 's' : ''} ago`;
   };
-  
 
   useEffect(() => {
     if (location.state?.refresh) {
       setRefreshProfile(true);
-      window.history.replaceState({}, document.title);
+      window.history.replaceState({}, document.title); // Clear refresh flag
     }
   }, [location.state]);
 
@@ -55,7 +51,7 @@ const MyDashboard = () => {
     const fetchUserProfile = async () => {
       setLoadingProfile(true);
       try {
-        const response = await fetch(`http://localhost:8099/home/profile/${user.email}`);
+        const response = await fetch(`https://healthhubuser.onrender.com/home/profile/${user.email}`);
         if (!response.ok) throw new Error('Failed to fetch user profile');
         const data = await response.json();
         setProfile(data);
@@ -83,19 +79,16 @@ const MyDashboard = () => {
     return <Navigate to="/?auth=login" replace />;
   }
 
-  // Use fields directly from profile (no healthProfile wrapper)
   const {
     bmi,
     bloodType,
     genotype,
     oxygenLevel,
     medicalConditions = [],
+    updatedAt,
   } = profile || {};
 
-  // Profile is considered complete if these key fields exist
   const isProfileComplete = bmi && bloodType && genotype && oxygenLevel;
-
-  const daysSinceUpdate = profile?.updatedAt ? timeAgo(profile.updatedAt) : null;
 
   return (
     <div className="dashboard">
@@ -111,9 +104,9 @@ const MyDashboard = () => {
                 {isProfileComplete ? "Update health profile" : (<><Plus className="icon-plus" /> Complete health profile</>)}
               </Link>
             </div>
-          </div>  
+          </div>
+
           <div className="completes-dashboard-grid">
-            {/* Overall Status Card */}
             <div className="completes-card">
               <div className="completes-card-header">
                 <div className="completes-icon-wrapper">
@@ -132,7 +125,6 @@ const MyDashboard = () => {
               </div>
             </div>
 
-            {/* Vital Signs Card */}
             <div className="completes-card">
               <div className="completes-card-header">
                 <div className="completes-icon-wrapper">
@@ -154,7 +146,6 @@ const MyDashboard = () => {
               </div>
             </div>
 
-            {/* Blood Info Card */}
             <div className="completes-card">
               <div className="completes-card-header">
                 <div className="completes-icon-wrapper">
@@ -179,7 +170,6 @@ const MyDashboard = () => {
               </div>
             </div>
 
-            {/* Conditions Card */}
             <div className="completes-card">
               <div className="completes-card-header">
                 <div className="completes-icon-wrapper">
@@ -193,75 +183,73 @@ const MyDashboard = () => {
                 <h3 className="completes-card-title">Conditions</h3>
               </div>
               <ul className="completes-label">
-                {medicalConditions.length === 0 ? (
-                  <li>No known conditions</li>
-                ) : (
-                  medicalConditions.map(condition => <li key={condition}>{condition}</li>)
-                )}
-                
+                {Array.isArray(medicalConditions) && medicalConditions.length > 0
+                  ? medicalConditions.map(condition => <li key={condition}>{condition}</li>)
+                  : <li>No known conditions</li>
+                }
               </ul>
             </div>
           </div>
+
           <div className="completess-grid">
-      <div className="completess-left-column">
-        <div className="completess-card">
-          <div className="completess-card-header">
-            <h2 className="completess-title">Personalized Recommendations</h2>
-            <Link to="/health-topics" className="completess-view-all">View all</Link>
-          </div>
-        </div>
-      </div>
-
-      <div>
-        <div className="completess-card">
-          <div className="completess-card-header">
-            <h2 className="completess-title">Alerts</h2>
-            <svg className="completess-bell-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-              <path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9"></path>
-              <path d="M10.3 21a1.94 1.94 0 0 0 3.4 0"></path>
-            </svg>
-          </div>
-
-          <div className="completess-alert-list">
-            <div className="completess-alert completess-green">
-              <p className="completess-alert-title">Annual Physical Exam</p>
-              <p className="completess-alert-subtext">Due in 3 months</p>
+            <div className="completess-left-column">
+              <div className="completess-card">
+                <div className="completess-card-header">
+                  <h2 className="completess-title">Personalized Recommendations</h2>
+                  <Link to="/health-topics" className="completess-view-all">View all</Link>
+                </div>
+              </div>
             </div>
-            <div className="completess-alert completess-blue">
-              <p className="completess-alert-title">Update Health Profile</p>
-              <p className="completess-alert-subtext">
-  {profile?.updatedAt ? timeAgo(profile.updatedAt) : 'Last updated date unavailable'}
-</p>
 
+            <div>
+              <div className="completess-card">
+                <div className="completess-card-header">
+                  <h2 className="completess-title">Alerts</h2>
+                  <svg className="completess-bell-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                    <path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9"></path>
+                    <path d="M10.3 21a1.94 1.94 0 0 0 3.4 0"></path>
+                  </svg>
+                </div>
+                <div className="completess-alert-list">
+                  <div className="completess-alert completess-green">
+                    <p className="completess-alert-title">Annual Physical Exam</p>
+                    <p className="completess-alert-subtext">Due in 3 months</p>
+                  </div>
+                  <div className="completess-alert completess-blue">
+                    <p className="completess-alert-title">Update Health Profile</p>
+                    <p className="completess-alert-subtext">
+                      {updatedAt ? timeAgo(updatedAt) : 'Last updated date unavailable'}
+                    </p>
+                  </div>
+                </div>
+
+                <div className="completess-recommendation-section">
+                  <h3 className="completess-recommendation-title">Recommended readings</h3>
+                  <ul className="completess-reading-list">
+                    <li>
+                      <a className="completess-reading-link" href="/article/understanding-hypertension">
+                        <p className="completess-reading-title">Understanding Hypertension</p>
+                        <p className="completess-reading-time">7 min read</p>
+                      </a>
+                    </li>
+                    <li>
+                      <a className="completess-reading-link" href="/article/nutrition-essentials">
+                        <p className="completess-reading-title">Essential Nutrition</p>
+                        <p className="completess-reading-time">10 min read</p>
+                      </a>
+                    </li>
+                    <li>
+                      <a className="completess-reading-link" href="/article/exercise-benefits">
+                        <p className="completess-reading-title">Benefits of Exercise</p>
+                        <p className="completess-reading-time">8 min read</p>
+                      </a>
+                    </li>
+                  </ul>
+                </div>
+              </div>
             </div>
           </div>
 
-          <div className="completess-recommendation-section">
-            <h3 className="completess-recommendation-title">Recommended readings</h3>
-            <ul className="completess-reading-list">
-              <li>
-                <a className="completess-reading-link" href="/article/understanding-hypertension">
-                  <p className="completess-reading-title">Understanding Hypertension</p>
-                  <p className="completess-reading-time">7 min read</p>
-                </a>
-              </li>
-              <li>
-                <a className="completess-reading-link" href="/article/nutrition-essentials">
-                  <p className="completess-reading-title">Essential Nutrition</p>
-                  <p className="completess-reading-time">10 min read</p>
-                </a>
-              </li>
-              <li>
-                <a className="completess-reading-link" href="/article/exercise-benefits">
-                  <p className="completess-reading-title">Benefits of Exercise</p>
-                  <p className="completess-reading-time">8 min read</p>
-                </a>
-              </li>
-            </ul>
-          </div>
-        </div>
-      </div>
-    </div>
         </div>
       </main>
     </div>

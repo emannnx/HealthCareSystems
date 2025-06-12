@@ -15,7 +15,7 @@ const HealthCardTab = ({ query }) => {
       setError(null);
 
       try {
-        const response = await fetch(`http://localhost:8091/searches/get/${query.trim()}`);
+        const response = await fetch(`https://searchcondition.onrender.com/searches/get/${query.trim()}`);
         if (!response.ok) {
           throw new Error("Network response was not ok");
         }

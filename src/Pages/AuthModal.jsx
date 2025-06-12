@@ -22,7 +22,12 @@ export default function AuthModal({ isOpen, onClose, onSuccess, onOpenAuth, init
         <AuthHeader isLogin={isLogin} setIsLogin={setIsLogin} onClose={onClose} />
         <div className="auth-modal-body">
           <ErrorBoundary>
-            {isLogin ? <LoginForm onSuccess={onSuccess} onOpenAuth={onOpenAuth}/> : <RegisterForm onOpenAuth={onOpenAuth}/>}
+          {isLogin ? (
+  <LoginForm onSuccess={onSuccess} onOpenAuth={onOpenAuth} />
+) : (
+  <RegisterForm onSuccess={onSuccess} onOpenAuth={onOpenAuth} />
+)}
+
           </ErrorBoundary>
         </div>
       </div>

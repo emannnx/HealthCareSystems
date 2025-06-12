@@ -1,8 +1,11 @@
 import React, { useState } from "react";
-import "./AuthModal.css"; // Import your CSS file
+import "./AuthModal.css";
 import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
+import { useAuth } from "../components/AuthContext"; // Update the path as needed
 
-const RegisterForm = () => {
+const RegisterForm = ({ onSuccess, onOpenAuth }) => {
+  const { signIn } = useAuth(); // Get signIn from AuthContext
+
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -24,14 +27,14 @@ const RegisterForm = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-  
+
     if (formData.password !== formData.confirmPassword) {
       alert("Passwords do not match.");
       return;
     }
-  
+
     try {
-      const response = await fetch("http://localhost:8099/home/createuser", {
+      const response = await fetch("https://healthhubuser.onrender.com/home/createuser", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -42,10 +45,14 @@ const RegisterForm = () => {
           password: formData.password,
         }),
       });
-  
+
       if (response.ok) {
-        alert("User registered successfully!");
-        // Optionally reset form or redirect
+        const loginSuccess = await signIn(formData.email, formData.password);
+        if (loginSuccess) {
+          onSuccess?.();
+        } else {
+          alert("Account created but automatic login failed.");
+        }
       } else if (response.status === 409) {
         alert("Email already exists.");
       } else if (response.status === 400) {
@@ -58,7 +65,6 @@ const RegisterForm = () => {
       alert("An error occurred. Please try again.");
     }
   };
-   
 
   return (
     <div className="register-form-container">
@@ -101,12 +107,12 @@ const RegisterForm = () => {
             required
           />
           <span
-                          className="password-toggle-icon"
-                          onClick={() => setShowPassword(!showPassword)}
-                          style={{ cursor: "pointer" }}
-                        >
-                          {showPassword ? <AiOutlineEyeInvisible size={20} /> : <AiOutlineEye size={20} />}
-                        </span>
+            className="password-toggle-icon"
+            onClick={() => setShowPassword(!showPassword)}
+            style={{ cursor: "pointer" }}
+          >
+            {showPassword ? <AiOutlineEyeInvisible size={20} /> : <AiOutlineEye size={20} />}
+          </span>
         </div>
 
         <div className="form-group">
@@ -121,12 +127,12 @@ const RegisterForm = () => {
             required
           />
           <span
-                          className="password-toggle-icon"
-                          onClick={() => setShowPassword(!showPassword)}
-                          style={{ cursor: "pointer" }}
-                        >
-                          {showPassword ? <AiOutlineEyeInvisible size={20} /> : <AiOutlineEye size={20} />}
-                        </span>
+            className="password-toggle-icon"
+            onClick={() => setShowPassword(!showPassword)}
+            style={{ cursor: "pointer" }}
+          >
+            {showPassword ? <AiOutlineEyeInvisible size={20} /> : <AiOutlineEye size={20} />}
+          </span>
         </div>
 
         <div className="form-groups">

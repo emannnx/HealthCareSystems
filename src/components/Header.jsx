@@ -62,7 +62,7 @@ const Header = () => {
       const fetchSuggestions = async () => {
         setLoading(true);
         try {
-          const response = await fetch(`http://localhost:8091/searches/get/${query.trim()}`);
+          const response = await fetch(`https://searchcondition.onrender.com/searches/get/${query.trim()}`);
           if (!response.ok) throw new Error('No results');
           const data = await response.json();
           const resultsArray = Array.isArray(data) ? data : [data];

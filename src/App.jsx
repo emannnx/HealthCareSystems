@@ -32,6 +32,7 @@ import ArticlesList from "./components/ArticlesList";
 import ArticleDetail from "./components/ArticleDetail.jsx";
 import MoodTracker from "./components/Mood/MoodTracker.jsx";
 import MyDashboard from "./components/MyDashboard.jsx";
+import HealthCardTab from './components/HealthCardTab';
 
 const ScrollToTop = () => {
   const { pathname } = useLocation();
@@ -46,6 +47,7 @@ const AppContent = () => {
   const [initialTab, setInitialTab] = useState("login");
   const { darkMode: isDarkMode } = useDarkMode();
   const { isAuthenticated } = useAuth();
+  const [selectedTopic, setSelectedTopic] = useState(null);
 
   const handleOpenAuth = (tab = "login") => {
     setInitialTab(tab);
@@ -63,7 +65,8 @@ const AppContent = () => {
     <>
       <ScrollToTop />
       <div className="app-layout">
-        <Header onOpenAuth={handleOpenAuth} />
+        <Header onOpenAuth={handleOpenAuth} setSelectedTopic={setSelectedTopic}/>
+        {selectedTopic && <HealthCardTab query={selectedTopic} />}
         <div className={`content ${isDarkMode ? "dark" : ""}`}>
           <Routes>
             <Route path="/" element={<Hero onOpenAuth={handleOpenAuth} />} />

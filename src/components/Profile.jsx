@@ -48,23 +48,47 @@ const Profile = () => {
   const { user, updateHealthProfile } = useAuth();
 
   useEffect(() => {
-    const savedProfile = localStorage.getItem('healthProfile');
-    if (savedProfile) {
-      const profile = JSON.parse(savedProfile);
-
-      setAge(profile.age || 30);
-      setGender(profile.gender || 'Male');
-      setHeight(profile.height || 175);
-      setWeight(profile.weight || 70);
-      setBloodType(profile.bloodType || '');
-      setGenotype(profile.genotype || '');
-      setOxygenLevel(profile.oxygenLevel || '');
-      setSelectedConditions(profile.selectedConditions || initialConditions);
-      setCustomConditions(profile.customConditions || []);
-      setHasFamilyHistory(profile.hasFamilyHistory || false);
-      setFamilyHistoryText(profile.familyHistoryText || '');
+    const fetchProfile = async () => {
+      try {
+        const response = await fetch(`https://healthhubuser.onrender.com/home/get/${user.username}`);
+        if (!response.ok) {
+          throw new Error('Failed to fetch profile');
+        }
+        const profile = await response.json();
+  
+        // Set state from backend profile
+        setAge(profile.age || 30);
+        setGender(profile.gender || 'Male');
+        setHeight(profile.height || 175);
+        setWeight(profile.weight || 70);
+        setBloodType(profile.bloodType || '');
+        setGenotype(profile.genotype || '');
+        setOxygenLevel(profile.oxygenLevel || '');
+        
+        const backendSelected = {};
+        Object.keys(initialConditions).forEach((cond) => {
+          backendSelected[cond] = profile.medicalConditions?.includes(cond) || false;
+        });
+        
+        const customFromBackend = (profile.medicalConditions || []).filter(
+          (cond) => !initialConditions.hasOwnProperty(cond)
+        );
+  
+        setSelectedConditions(backendSelected);
+        setCustomConditions(customFromBackend);
+        setHasFamilyHistory(profile.familyMedicalHistory || false);
+        setFamilyHistoryText(profile.familyHistoryText || '');
+  
+      } catch (error) {
+        console.error('Failed to fetch profile:', error);
+      }
+    };
+  
+    if (user?.username) {
+      fetchProfile();
     }
-  }, []);
+  }, [user]);
+  
 
   useEffect(() => {
     if (height && weight) {
@@ -132,7 +156,7 @@ const Profile = () => {
     };
 
     try {
-      const response = await fetch(`http://localhost:8099/home/user/${user.username}`, {
+      const response = await fetch(`https://healthhubuser.onrender.com/home/update/${user.username}`, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',

@@ -1,10 +1,7 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
 import { useAuth } from "../components/AuthContext";
 import { RiCloseLine } from "react-icons/ri";
 import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
-import OAuthButtons from "./0AuthButtons";
-import { GoogleOAuthProvider, GoogleLogin } from "@react-oauth/google";
 
 export default function LoginForm({ onSuccess, onOpenAuth }) {
   const { signIn } = useAuth();
@@ -36,17 +33,6 @@ export default function LoginForm({ onSuccess, onOpenAuth }) {
     setError("");
   };
 
-  const handleGoogleSuccess = (response) => {
-    const token = response.credential;
-    console.log("Google login successful, token:", token);
-  };
-
-  const handleGoogleError = (error) => {
-    console.error("Google login error:", error);
-    setError("Google login failed.");
-    setPopupVisible(true);
-  };
-
   return (
     <>
       {popupVisible && (
@@ -61,72 +47,64 @@ export default function LoginForm({ onSuccess, onOpenAuth }) {
         </div>
       )}
 
-      <GoogleOAuthProvider clientId="756651798489-18r5dpc8npf1lrig3570quqbg0u6q3f0.apps.googleusercontent.com">
-        <form className="login-form" onSubmit={handleSubmit}>
-          <div className="form-group">
-            <label htmlFor="email" className="form-label">
-              Email address
-            </label>
+      <form className="login-form" onSubmit={handleSubmit}>
+        <div className="form-group">
+          <label htmlFor="email" className="form-label">
+            Email address
+          </label>
+          <input
+            id="email"
+            name="email"
+            type="email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            required
+            className="form-input"
+          />
+        </div>
+
+        <div className="form-group password-wrapper">
+          <label htmlFor="password" className="form-label">
+            Password
+          </label>
+          <div className="password-input-container">
             <input
-              id="email"
-              name="email"
-              type="email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
+              id="password"
+              name="password"
+              type={showPassword ? "text" : "password"}
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
               required
               className="form-input"
             />
-          </div>
-
-          <div className="form-group password-wrapper">
-            <label htmlFor="password" className="form-label">
-              Password
-            </label>
-            <div className="password-input-container">
-              <input
-                id="password"
-                name="password"
-                type={showPassword ? "text" : "password"}
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-                required
-                className="form-input"
-              />
-              <span
-                className="password-toggle-icon"
-                onClick={() => setShowPassword(!showPassword)}
-                style={{ cursor: "pointer" }}
-              >
-                {showPassword ? <AiOutlineEyeInvisible size={20} /> : <AiOutlineEye size={20} />}
-              </span>
-            </div>
-          </div>
-
-          <div className="form-options">
-            <label className="checkbox-wrapper">
-              <input type="checkbox" name="remember-me" className="checkbox" />
-              Remember me
-            </label>
             <span
-              style={{ cursor: "pointer", color: "blue", textDecoration: "underline" }}
-              onClick={() => onOpenAuth("register")}
-              className="forgot-password"
+              className="password-toggle-icon"
+              onClick={() => setShowPassword(!showPassword)}
+              style={{ cursor: "pointer" }}
             >
-              Forgot your password?
+              {showPassword ? <AiOutlineEyeInvisible size={20} /> : <AiOutlineEye size={20} />}
             </span>
           </div>
+        </div>
 
-          <button type="submit" className="submit-button">
-            Sign In
-          </button>
+        <div className="form-options">
+          <label className="checkbox-wrapper">
+            <input type="checkbox" name="remember-me" className="checkbox" />
+            Remember me
+          </label>
+          <span
+            style={{ cursor: "pointer", color: "blue", textDecoration: "underline" }}
+            onClick={() => onOpenAuth("register")}
+            className="forgot-password"
+          >
+            Forgot your password?
+          </span>
+        </div>
 
-          <GoogleLogin
-            onSuccess={handleGoogleSuccess}
-            onError={handleGoogleError}
-            useOneTap
-          />
-        </form>
-      </GoogleOAuthProvider>
+        <button type="submit" className="submit-button">
+          Sign In
+        </button>
+      </form>
     </>
   );
 }
