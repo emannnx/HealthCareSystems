@@ -168,19 +168,20 @@ const AppContent = () => {
 const App = () => {
   return (
     <ErrorBoundary>
-      <LoadingProvider>
       <AuthProvider>
       <DarkModeProvider>
         <OverlayProvider>
+        <LoadingProvider>
           <ToastProvider>
           <Router>
             <AppContent />
           </Router>
           </ToastProvider>
+          </LoadingProvider>
         </OverlayProvider>
       </DarkModeProvider>
     </AuthProvider>
-    </LoadingProvider>
+    
     </ErrorBoundary>
   );
 };

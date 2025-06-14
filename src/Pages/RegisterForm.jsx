@@ -13,14 +13,24 @@ import "./AuthModal.css";
 const RegisterForm = () => {
   const navigate = useNavigate();
   const { setLoading } = useLoading(); // ✅ grab setLoading from context
+  const [showToast, setShowToast] = useState(false);
+  const [errorToast, setErrorToast] = useState("");
 
   const [formData, setFormData] = useState({
-    name: "",
+    username: "",
     email: "",
     password: "",
     confirmPassword: "",
     terms: false,
   });
+
+  const Toast = ({ message, show }) => {
+    return (
+      <div className={`toast ${show ? "show" : ""}`}>
+        {message}
+      </div>
+    );
+  };
 
   const [showPassword, setShowPassword] = useState(false);
   const [toast, setToast] = useState({ open: false, message: "", variant: "default" });
@@ -41,52 +51,85 @@ const RegisterForm = () => {
     e.preventDefault();
 
     if (!isValidEmail(formData.email)) {
-      setToast({ open: true, message: "Email must be a valid Gmail or Yahoo address.", variant: "destructive" });
+      setToast({
+        open: true,
+        message: "Email must be a valid Gmail or Yahoo address.",
+        variant: "destructive",
+      });
       return;
     }
 
     if (formData.password !== formData.confirmPassword) {
-      setToast({ open: true, message: "Passwords do not match.", variant: "destructive" });
+      setToast({
+        open: true,
+        message: "Passwords do not match.",
+        variant: "destructive",
+      });
       return;
     }
 
-    setLoading(true); // ✅ show loading
+    setLoading(true);
     try {
       const response = await fetch("https://healthhubuser.onrender.com/home/createuser", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(formData),
+        body: JSON.stringify({
+          username: formData.username,
+          email: formData.email,
+          password: formData.password,
+        }),
       });
 
       if (response.ok) {
-        setToast({ open: true, message: "User registered successfully!", variant: "success" });
-        setFormData({ name: "", email: "", password: "", confirmPassword: "", terms: false });
+        setToast({
+          open: true,
+          message: "User registered successfully!",
+          variant: "success",
+        });
+        setFormData({
+          username: "",
+          email: "",
+          password: "",
+          confirmPassword: "",
+          terms: false,
+        });
       } else if (response.status === 409) {
-        setToast({ open: true, message: "User already exists!", variant: "destructive" });
+        setToast({
+          open: true,
+          message: "User already exists!",
+          variant: "destructive",
+        });
       } else {
         const errorMessage = await response.text();
-        setToast({ open: true, message: errorMessage || "Registration failed", variant: "destructive" });
+        setToast({
+          open: true,
+          message: errorMessage || "Registration failed",
+          variant: "destructive",
+        });
       }
     } catch (error) {
-      setToast({ open: true, message: "Something went wrong. Please try again.", variant: "destructive" });
+      setToast({
+        open: true,
+        message: "Something went wrong. Please try again.",
+        variant: "destructive",
+      });
       console.error(error);
     } finally {
-      setLoading(false); // ✅ hide loading
+      setLoading(false);
     }
   };
 
   return (
     <div className="register-form-container">
+      <Toast message="Health profile saved successfully!" show={showToast} />
       <form className="register-form" onSubmit={handleSubmit}>
-        <h2>Create Account</h2>
-
         <div className="form-group">
-          <label htmlFor="name" className="label">Full name</label>
+          <label htmlFor="username" className="label">Full name</label>
           <input
             type="text"
-            id="name"
-            name="name"
-            value={formData.name}
+            id="username"
+            name="username"
+            value={formData.username}
             onChange={handleChange}
             className="input"
             required

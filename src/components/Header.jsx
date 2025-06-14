@@ -111,7 +111,7 @@ const Header = () => {
                     <Link to="/symptom-checker" className="dropdown-item">Symptom Checker</Link>
                     <Link to="/health-calculators" className="dropdown-item">Health Calculators</Link>
                     <Link to="/nutrition-guide" className="dropdown-item">Nutrition Guide</Link>
-                    <Link to="/emergency-guide" className="dropdown-item">Emergency Guide</Link>
+                    {/* <Link to="/emergency-guide" className="dropdown-item">Emergency Guide</Link> */}
                   </div>
                 </div>
 
