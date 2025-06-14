@@ -7,7 +7,6 @@ export const AuthProvider = ({ children }) => {
   const [authError, setAuthError] = useState('');
   const [user, setUser] = useState(null);
 
-  // On mount, load user and auth state from localStorage
   useEffect(() => {
     try {
       const storedAuth = localStorage.getItem('isAuthenticated');
@@ -22,24 +21,22 @@ export const AuthProvider = ({ children }) => {
     }
   }, []);
 
-  // Validate email to only allow Gmail or Yahoo
   const validateEmail = (email) => {
     const regex = /^[a-zA-Z0-9._%+-]+@(gmail\.com|yahoo\.com)$/;
     return regex.test(email);
   };
 
-  // Validate password to ensure strength
   const validatePassword = (password) => {
     const regex = /^(?=.*\d)(?=.*[!@#$%^&*])[A-Za-z\d!@#$%^&*]{8,}$/;
     return regex.test(password);
   };
 
-  // Handle sign-in by calling backend
   const signIn = async (email, password) => {
     if (!validateEmail(email)) {
       setAuthError('Email must be a valid Gmail or Yahoo address');
       return false;
     }
+
     if (!validatePassword(password)) {
       setAuthError('Password must be at least 8 characters long, contain a number and a special character "!"');
       return false;
@@ -49,18 +46,19 @@ export const AuthProvider = ({ children }) => {
       const response = await fetch('https://healthhubuser.onrender.com/home/login', {
         method: 'POST',
         headers: {
-          'Content-Type': 'application/json'
+          'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ email, password })
+        body: JSON.stringify({ email, password }),
       });
 
       let result;
-      const text = await response.text();
+      const contentType = response.headers.get('Content-Type');
 
-      try {
-        result = JSON.parse(text);
-      } catch {
-        result = { message: text }; // fallback if not JSON
+      if (contentType && contentType.includes('application/json')) {
+        result = await response.json();
+      } else {
+        const text = await response.text();
+        throw new Error(text); // triggers the catch block
       }
 
       if (response.ok && result.message === 'Login successful') {
@@ -80,27 +78,25 @@ export const AuthProvider = ({ children }) => {
         return false;
       }
     } catch (error) {
-      console.error('Login error:', error);
-      setAuthError('Failed to connect to server');
+      console.error('Login error:', error.message);
+      setAuthError(error.message || 'Failed to connect to server');
       return false;
     }
   };
 
-  // Handle sign-out
   const signOut = () => {
     setIsAuthenticated(false);
     setUser(null);
     localStorage.removeItem('isAuthenticated');
     localStorage.removeItem('healthhub-user');
-    localStorage.removeItem('last-update-time'); // remove last update time
+    localStorage.removeItem('last-update-time');
   };
 
-  // Update health profile data and save time of update
   const updateHealthProfile = (updatedUser) => {
-    const currentTime = new Date().toISOString(); // Save time in ISO format
+    const currentTime = new Date().toISOString();
     setUser(updatedUser);
     localStorage.setItem('healthhub-user', JSON.stringify(updatedUser));
-    localStorage.setItem('last-update-time', currentTime); // Save update time
+    localStorage.setItem('last-update-time', currentTime);
   };
 
   return (
@@ -119,5 +115,4 @@ export const AuthProvider = ({ children }) => {
   );
 };
 
-// Hook to access auth context
 export const useAuth = () => useContext(AuthContext);
