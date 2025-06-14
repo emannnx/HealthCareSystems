@@ -47,9 +47,9 @@ const RegisterForm = () => {
         alert("User registered successfully!");
         // Optionally reset form or redirect
       } else if (response.status === 409) {
-        alert("Email already exists.");
-      } else if (response.status === 400) {
         alert("Username already exists.");
+      } else if (response.status === 400) {
+        alert("Email already exists.");
       } else {
         alert("Registration failed. Please try again.");
       }
