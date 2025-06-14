@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import './Profile.css';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from './AuthContext'; // Assuming this provides user info & updateHealthProfile
+import { useLoading } from './LoadingContext';
 
 const Toast = ({ message, show }) => {
   return (
@@ -22,6 +23,7 @@ const Profile = () => {
   const [oxygenLevel, setOxygenLevel] = useState('');
   const [showToast, setShowToast] = useState(false);
   const [errorToast, setErrorToast] = useState('');
+  const { setLoading } = useLoading();
   const navigate = useNavigate();
 
   const initialConditions = {
@@ -49,6 +51,8 @@ const Profile = () => {
 
   useEffect(() => {
     const fetchProfile = async () => {
+      setLoading(true);
+      setShowToast(false);
       try {
         const response = await fetch(`https://healthhubuser.onrender.com/home/get/${user.username}`);
         if (!response.ok) {
@@ -81,6 +85,8 @@ const Profile = () => {
   
       } catch (error) {
         console.error('Failed to fetch profile:', error);
+      } finally {
+        setLoading(false);
       }
     };
   
@@ -134,6 +140,8 @@ const Profile = () => {
   };
 
   const handleSave = async () => {
+    setLoading(true);
+    setShowToast(false);
     const medicalConditions = [
       ...Object.keys(selectedConditions).filter((key) => selectedConditions[key]),
       ...customConditions,
@@ -186,11 +194,10 @@ const Profile = () => {
       setErrorToast('Error saving profile. Please try again.');
       setTimeout(() => setErrorToast(''), 4000);
       console.error('Save profile error:', error);
+    } finally {
+      setLoading(false);
     }
   };
-  
-  
-  
 
   const checkedConditions = Object.keys(selectedConditions).filter((key) => selectedConditions[key]);
 
