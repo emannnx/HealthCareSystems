@@ -42,21 +42,14 @@ const RegisterForm = () => {
           password: formData.password,
         }),
       });
-  
-      if (response.ok) {
-        alert("User registered successfully!");
-        // Optionally reset form or redirect
-      } else if (response.status === 409) {
-        alert("Username already exists.");
-      } else if (response.status === 400) {
-        alert("Email already exists.");
-      } else {
-        alert("Registration failed. Please try again.");
-      }
+    
+      const message = await response.text();
+      alert(message);
     } catch (error) {
       console.error("Error during registration:", error);
       alert("An error occurred. Please try again.");
     }
+    
   };
    
 
