@@ -4,7 +4,7 @@ import { RiCloseLine } from "react-icons/ri";
 import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
 
 export default function LoginForm({ onSuccess, onOpenAuth }) {
-  const { signIn } = useAuth();
+  const { signIn, authError } = useAuth();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
@@ -17,7 +17,7 @@ export default function LoginForm({ onSuccess, onOpenAuth }) {
       setError("");
       const success = await signIn(email, password);
       if (!success) {
-        setError("Invalid email or password.");
+        setError(authError || "Invalid email or password.");
         setPopupVisible(true);
       } else {
         onSuccess?.();
@@ -26,12 +26,7 @@ export default function LoginForm({ onSuccess, onOpenAuth }) {
       setError("Failed to sign in. Please check your credentials and try again.");
       setPopupVisible(true);
     }
-  };
-
-  const closePopup = () => {
-    setPopupVisible(false);
-    setError("");
-  };
+  };  
 
   return (
     <>

@@ -32,16 +32,6 @@ export const AuthProvider = ({ children }) => {
   };
 
   const signIn = async (email, password) => {
-    if (!validateEmail(email)) {
-      setAuthError('Email must be a valid Gmail or Yahoo address');
-      return false;
-    }
-
-    if (!validatePassword(password)) {
-      setAuthError('Password must be at least 8 characters long, contain a number and a special character "!"');
-      return false;
-    }
-
     try {
       const response = await fetch('https://healthhubuser.onrender.com/home/login', {
         method: 'POST',
@@ -50,23 +40,23 @@ export const AuthProvider = ({ children }) => {
         },
         body: JSON.stringify({ email, password }),
       });
-
+  
       let result;
       const contentType = response.headers.get('Content-Type');
-
+  
       if (contentType && contentType.includes('application/json')) {
         result = await response.json();
       } else {
         const text = await response.text();
-        throw new Error(text); // triggers the catch block
+        throw new Error(text);
       }
-
+  
       if (response.ok && result.message === 'Login successful') {
         const loggedInUser = {
           username: result.username,
           email: result.email,
         };
-
+  
         setUser(loggedInUser);
         setIsAuthenticated(true);
         setAuthError('');
@@ -83,6 +73,7 @@ export const AuthProvider = ({ children }) => {
       return false;
     }
   };
+  
 
   const signOut = () => {
     setIsAuthenticated(false);
