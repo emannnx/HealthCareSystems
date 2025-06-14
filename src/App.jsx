@@ -33,6 +33,9 @@ import ArticleDetail from "./components/ArticleDetail.jsx";
 import MoodTracker from "./components/Mood/MoodTracker.jsx";
 import MyDashboard from "./components/MyDashboard.jsx";
 import HealthCardTab from './components/HealthCardTab';
+import { LoadingProvider, useLoading } from "./components/LoadingContext.jsx";
+import LoadingOverlay from "./components/LoadingOverlay.jsx";
+import { ToastProvider } from "@radix-ui/react-toast";
 
 const ScrollToTop = () => {
   const { pathname } = useLocation();
@@ -48,6 +51,7 @@ const AppContent = () => {
   const { darkMode: isDarkMode } = useDarkMode();
   const { isAuthenticated } = useAuth();
   const [selectedTopic, setSelectedTopic] = useState(null);
+  const { loading } = useLoading();
 
   const handleOpenAuth = (tab = "login") => {
     setInitialTab(tab);
@@ -63,6 +67,7 @@ const AppContent = () => {
 
   return (
     <>
+    {loading && <LoadingOverlay />}
       <ScrollToTop />
       <div className="app-layout">
         <Header onOpenAuth={handleOpenAuth} setSelectedTopic={setSelectedTopic}/>
@@ -163,15 +168,19 @@ const AppContent = () => {
 const App = () => {
   return (
     <ErrorBoundary>
+      <LoadingProvider>
       <AuthProvider>
       <DarkModeProvider>
         <OverlayProvider>
+          <ToastProvider>
           <Router>
             <AppContent />
           </Router>
+          </ToastProvider>
         </OverlayProvider>
       </DarkModeProvider>
     </AuthProvider>
+    </LoadingProvider>
     </ErrorBoundary>
   );
 };

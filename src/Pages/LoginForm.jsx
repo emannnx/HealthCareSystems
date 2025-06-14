@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useAuth } from "../components/AuthContext";
 import { RiCloseLine } from "react-icons/ri";
 import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
+import { useLoading } from "../components/LoadingContext";
 
 export default function LoginForm({ onSuccess, onOpenAuth }) {
   const { signIn, authError } = useAuth();
@@ -10,9 +11,13 @@ export default function LoginForm({ onSuccess, onOpenAuth }) {
   const [error, setError] = useState("");
   const [popupVisible, setPopupVisible] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
+  const { setLoading } = useLoading();
+
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setLoading(true); // Show loading state
+    setPopupVisible(false); // Hide any existing popup
     try {
       setError("");
       const success = await signIn(email, password);
@@ -25,8 +30,14 @@ export default function LoginForm({ onSuccess, onOpenAuth }) {
     } catch (err) {
       setError("Failed to sign in. Please check your credentials and try again.");
       setPopupVisible(true);
+    } finally {
+      setLoading(false); // Hide loading state
     }
-  };  
+  };
+
+  const closePopup = () => {
+    setPopupVisible(false);
+  };
 
   return (
     <>
@@ -37,6 +48,7 @@ export default function LoginForm({ onSuccess, onOpenAuth }) {
             onClick={closePopup}
             color="white"
             className="close-btn"
+            style={{ cursor: "pointer" }}
           />
           <p>{error}</p>
         </div>
@@ -62,7 +74,7 @@ export default function LoginForm({ onSuccess, onOpenAuth }) {
           <label htmlFor="password" className="form-label">
             Password
           </label>
-          <div className="password-input-container">
+          <div className="password-input-container" style={{ position: "relative" }}>
             <input
               id="password"
               name="password"
@@ -71,21 +83,28 @@ export default function LoginForm({ onSuccess, onOpenAuth }) {
               onChange={(e) => setPassword(e.target.value)}
               required
               className="form-input"
+              style={{ paddingRight: "2.5rem" }}
             />
             <span
               className="password-toggle-icon"
               onClick={() => setShowPassword(!showPassword)}
-              style={{ cursor: "pointer" }}
+              style={{
+                cursor: "pointer",
+                position: "absolute",
+                right: "0.5rem",
+                top: "50%",
+                transform: "translateY(-50%)",
+              }}
             >
               {showPassword ? <AiOutlineEyeInvisible size={20} /> : <AiOutlineEye size={20} />}
             </span>
           </div>
         </div>
 
-        <div className="form-options">
-          <label className="checkbox-wrapper">
+        <div className="form-options" style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
+          <label className="checkbox-wrapper" style={{ display: "flex", alignItems: "center" }}>
             <input type="checkbox" name="remember-me" className="checkbox" />
-            Remember me
+            <span style={{ marginLeft: "0.5rem" }}>Remember me</span>
           </label>
           <span
             style={{ cursor: "pointer", color: "blue", textDecoration: "underline" }}
