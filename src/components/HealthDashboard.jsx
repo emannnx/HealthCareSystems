@@ -39,11 +39,11 @@ const HealthDashboard = () => {
                 </svg>
               </div>
               <div className="title-wrapper">
-                <h3 className="titles">Mood Tracker</h3>
+                <h3 className="titles">My Dashboard</h3>
                 <span className="badge">New</span>
               </div>
               <p className="description">
-                Log your daily mood and track patterns over time
+                View your Health Details
               </p>
             </div>
           </div>

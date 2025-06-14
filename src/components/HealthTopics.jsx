@@ -62,7 +62,7 @@ const HealthTopics = () => {
               <input
                 type="text"
                 placeholder="Search articles..."
-                className="search-input"
+                className="search-inputs"
                 value={searchTerm}
                 onChange={handleSearchChange}
               />

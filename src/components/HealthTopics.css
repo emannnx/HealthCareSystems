@@ -11,7 +11,7 @@
 .content-wrapper {
   max-width: 1120px;
   margin: 0 auto;
-  padding: 1rem 1rem 3rem 1rem;
+  padding: 3rem 1rem 3rem 1rem;
 }
 
 .page-title {
@@ -53,7 +53,7 @@
   align-items: center;
 }
 
-.search-input {
+.search-inputs {
   width: 100%;
   padding: 0.5rem 0.75rem 0.5rem 2.5rem;
   border: 1px solid #D1D5DB;
