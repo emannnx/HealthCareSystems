@@ -561,6 +561,27 @@
 .content.dark .mood-tracker-container .mood-note{
   color: #fff !important;
 }
+
+.content.dark .bodyPartSelect{
+  background-color: #020817;
+  color: #fff;
+  border: 1px solid #1E293B;
+}
+
+.content.dark .bodyPartSelect option{
+  background-color: #020817;
+  color: #fff;
+}
+
+.content.dark .bodyPartSelect option:hover {
+  background-color: #1E293B;
+  color: #fff;
+}
+
+.content.dark .seearch-input input::placeholder {
+  color: #fff;
+}
+
 @media (max-width: 768px) {
   .content {
     margin-top: 4rem;

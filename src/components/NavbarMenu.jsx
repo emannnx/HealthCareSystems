@@ -38,7 +38,7 @@ const NavbarMenu = ({ onLinkClick }) => {
           <Link to="/symptom-checker" className="nav-sublink" onClick={onLinkClick}>Symptom Checker</Link>
           <Link to="/health-calculators" className="nav-sublink" onClick={onLinkClick}>Health Calculators</Link>
           <Link to="/nutrition-guide" className="nav-sublink" onClick={onLinkClick}>Nutrition Guide</Link>
-          <Link to="/emergency-guide" className="nav-sublink" onClick={onLinkClick}>Emergency Guide</Link>
+          {/* <Link to="/emergency-guide" className="nav-sublink" onClick={onLinkClick}>Emergency Guide</Link> */}
         </div>
 
         {isAuthenticated && (
