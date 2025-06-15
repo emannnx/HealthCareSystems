@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import * as ToastPrimitives from "@radix-ui/react-toast";
 import { X } from "lucide-react";
-import "./toast.css";
+import "./Toast.css";
 
 const ToastProvider = ToastPrimitives.Provider;
 
