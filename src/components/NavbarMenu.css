@@ -1,9 +1,16 @@
 .navbar-container {
-  position: absolute;
+  position: fixed; /* instead of absolute */
   top: 4.1rem;
   left: 0;
+  right: 0;
+  bottom: 0;
   width: 100%;
   z-index: 1000;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch; /* smooth scroll on iOS */
+  background-color: #fff;
+  display: flex;
+  flex-direction: column;
 }
 
 .navbar-container.dark{
@@ -32,13 +39,21 @@
 
 
 .navbar-menu {
+  flex-grow: 1;
+  overflow-y: auto;
+  background-color: #fff;
   display: flex;
   flex-direction: column;
   text-align: start;
-  background-color: #fff;
   width: 100%;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  z-index: 9999;
+  padding-bottom: 4rem; /* prevents content being blocked by keyboard */
+}
+
+@media (max-height: 500px) {
+  .navbar-container {
+    padding-bottom: 6rem; /* extra safe padding */
+  }
 }
 
 .navbar-menu.closed {
