@@ -24,7 +24,7 @@ const HealthDashboard = () => {
         </div>
       </div>
     <div className="grid-container">
-      <Link to="/my-dashboard">
+      <Link to="/mood-tracker">
         <div className="ccards">
           <div className="card-content">
             <div className="card-inner">
@@ -39,11 +39,11 @@ const HealthDashboard = () => {
                 </svg>
               </div>
               <div className="title-wrapper">
-                <h3 className="titles">My Dashboard</h3>
+                <h3 className="titles">Mood Tracker</h3>
                 <span className="badge">New</span>
               </div>
               <p className="description">
-                View your Health Details
+                Log your daily mood and track patterns over time
               </p>
             </div>
           </div>

@@ -58,6 +58,21 @@
   
   .nutrition-tab-content {
     margin-top: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center
+  }
+
+  .nutrition-tab-content h2 {
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+    color: #111827;
+  }
+
+  .nutrition-tab-heading {
+    display: inline-flex;
+    justify-content: center;
   }
   
   .nutrition-card-grid {

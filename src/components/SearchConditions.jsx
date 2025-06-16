@@ -149,37 +149,53 @@
 // export default SearchConditions;
 
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { useSearchParams } from 'react-router-dom';
 import './SearchConditions.css';
 import HealthCardTab from './HealthCardTab';
 
 const SearchConditions = () => {
-  const [searchTerm, setSearchTerm] = useState('');
+  const [searchParams] = useSearchParams();
+  const initialQuery = searchParams.get('query') || '';
+
+  const [searchTerm, setSearchTerm] = useState(initialQuery);
   const [searchedTerm, setSearchedTerm] = useState('');
   const [selectedTopic, setSelectedTopic] = useState(null);
   const [results, setResults] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    if (!searchTerm.trim()) return;
+  // Auto-search when component loads and query param is present
+  useEffect(() => {
+    if (initialQuery) {
+      autoSearch(initialQuery);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [initialQuery]);
 
-    setSearchedTerm(searchTerm.trim());
+  const autoSearch = async (term) => {
+    const trimmedTerm = term.trim().toLowerCase();
+    if (!trimmedTerm) return;
+
+    setSearchTerm(trimmedTerm);
+    setSearchedTerm(trimmedTerm);
     setSelectedTopic(null);
     setLoading(true);
     setError('');
     setResults([]);
 
     try {
-      const response = await fetch(`https://searchcondition.onrender.com/searches/get/${searchTerm.trim()}`);
+      const url =
+        trimmedTerm === 'all'
+          ? `https://searchcondition.onrender.com/searches/getAll`
+          : `https://searchcondition.onrender.com/searches/get/${trimmedTerm}`;
+
+      const response = await fetch(url);
       if (!response.ok) {
         throw new Error('Condition not found or server error.');
       }
 
       const data = await response.json();
-
-      // Wrap in array if backend returns a single object
       const resultsArray = Array.isArray(data) ? data : [data];
       setResults(resultsArray);
     } catch (err) {
@@ -187,6 +203,11 @@ const SearchConditions = () => {
     } finally {
       setLoading(false);
     }
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    autoSearch(searchTerm);
   };
 
   return (
@@ -225,25 +246,28 @@ const SearchConditions = () => {
       </form>
 
       <div className="search-info">
-        {loading && <p>Loading...</p>}
+        {loading && (
+          <div className="loader-container">
+            <div className="loader"></div>
+          </div>
+        )}
         {error && <p style={{ color: 'red' }}>{error}</p>}
 
-        {!selectedTopic && searchedTerm && results.length > 0 && (
+        {!selectedTopic && searchedTerm && results.length > 0 && !loading && (
           <div className="health-grid">
             {results.map((topic, index) => (
-  <div
-    key={index}
-    className="health-card"
-    onClick={() => setSelectedTopic(topic.name)}
-    style={{ cursor: 'pointer' }}
-  >
-    <div className="card-headerr">
-      <h3 className="card-title">{topic.name}</h3>
-      <p className="card-description">{topic.overview}</p>
-    </div>
-  </div>
-))}
-
+              <div
+                key={index}
+                className="health-card"
+                onClick={() => setSelectedTopic(topic.name)}
+                style={{ cursor: 'pointer' }}
+              >
+                <div className="card-headerr">
+                  <h3 className="card-title">{topic.name}</h3>
+                  <p className="card-descriptions">{topic.overview}</p>
+                </div>
+              </div>
+            ))}
           </div>
         )}
 
@@ -272,10 +296,12 @@ const SearchConditions = () => {
             </div>
             <h3 className="search-heading">Search for health conditions</h3>
             <p className="search-description">
-              Enter a condition name like "diabetes", "nutrition", or type "all" to see every topic.
+              Enter a condition name like <strong>{searchTerm || 'diabetes'}</strong>,{' '}
+              <strong>nutrition</strong>, or type <strong>all</strong> to see every topic.
             </p>
           </>
         )}
+
         {selectedTopic && <HealthCardTab query={selectedTopic} />}
       </div>
     </div>

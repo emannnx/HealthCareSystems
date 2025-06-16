@@ -69,8 +69,7 @@ const MyDashboard = () => {
   if (isLoading || loadingProfile) {
     return (
       <div className="loading-container">
-        <div className="loading-spinner"></div>
-        <p className="loading-text">Loading...</p>
+        <div className="loader"></div>
       </div>
     );
   }
@@ -87,7 +86,7 @@ const MyDashboard = () => {
     medicalConditions = [],
     updatedAt,
   } = profile || {};
-
+  
   const isProfileComplete = bmi && bloodType && genotype && oxygenLevel;
 
   return (

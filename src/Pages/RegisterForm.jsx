@@ -1,20 +1,24 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
-import {
-  Toast,
-  ToastTitle,
-  ToastDescription,
-  ToastClose,
-} from "../components/Toast"; // adjust path as needed
-import { useLoading } from "../components/LoadingContext"; // ✅ import the loading context
+import { useLoading } from "../components/LoadingContext";
+import { RiCloseLine } from "react-icons/ri";
 import "./AuthModal.css";
 
 const RegisterForm = () => {
   const navigate = useNavigate();
-  const { setLoading } = useLoading(); // ✅ grab setLoading from context
-  const [showToast, setShowToast] = useState(false);
-  const [errorToast, setErrorToast] = useState("");
+  const { setLoading } = useLoading();
+  const [showPassword, setShowPassword] = useState(false);
+
+  const [popup, setPopup] = useState({
+    open: false,
+    message: "",
+    type: "success", // or "error"
+  });
+
+  const closePopup = () => {
+    setPopup({ open: false, message: "", type: "success" });
+  };
 
   const [formData, setFormData] = useState({
     username: "",
@@ -24,21 +28,9 @@ const RegisterForm = () => {
     terms: false,
   });
 
-  const Toast = ({ message, show }) => {
-    return (
-      <div className={`toast ${show ? "show" : ""}`}>
-        {message}
-      </div>
-    );
-  };
-
-  const [showPassword, setShowPassword] = useState(false);
-  const [toast, setToast] = useState({ open: false, message: "", variant: "default" });
-
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData((prev) => ({ ...prev, [name]: value }));
-    if (toast.open) setToast({ ...toast, open: false });
   };
 
   const handleCheckboxChange = (e) => {
@@ -51,20 +43,12 @@ const RegisterForm = () => {
     e.preventDefault();
 
     if (!isValidEmail(formData.email)) {
-      setToast({
-        open: true,
-        message: "Email must be a valid Gmail or Yahoo address.",
-        variant: "destructive",
-      });
+      setPopup({ open: true, message: "Email must be a valid Gmail or Yahoo address.", type: "error" });
       return;
     }
 
     if (formData.password !== formData.confirmPassword) {
-      setToast({
-        open: true,
-        message: "Passwords do not match.",
-        variant: "destructive",
-      });
+      setPopup({ open: true, message: "Passwords do not match.", type: "error" });
       return;
     }
 
@@ -81,11 +65,7 @@ const RegisterForm = () => {
       });
 
       if (response.ok) {
-        setToast({
-          open: true,
-          message: "User registered successfully!",
-          variant: "success",
-        });
+        setPopup({ open: true, message: "User registered successfully!, Please go to Login form to Sign in", type: "success" });
         setFormData({
           username: "",
           email: "",
@@ -94,25 +74,13 @@ const RegisterForm = () => {
           terms: false,
         });
       } else if (response.status === 409) {
-        setToast({
-          open: true,
-          message: "User already exists!",
-          variant: "destructive",
-        });
+        setPopup({ open: true, message: "User already exists!", type: "error" });
       } else {
         const errorMessage = await response.text();
-        setToast({
-          open: true,
-          message: errorMessage || "Registration failed",
-          variant: "destructive",
-        });
+        setPopup({ open: true, message: errorMessage || "Registration failed", type: "error" });
       }
     } catch (error) {
-      setToast({
-        open: true,
-        message: "Something went wrong. Please try again.",
-        variant: "destructive",
-      });
+      setPopup({ open: true, message: "Something went wrong. Please try again.", type: "error" });
       console.error(error);
     } finally {
       setLoading(false);
@@ -121,7 +89,6 @@ const RegisterForm = () => {
 
   return (
     <div className="register-form-container">
-      <Toast message="Health profile saved successfully!" show={showToast} />
       <form className="register-form" onSubmit={handleSubmit}>
         <div className="form-group">
           <label htmlFor="username" className="label">Full name</label>
@@ -215,16 +182,16 @@ const RegisterForm = () => {
         </div>
       </form>
 
-      {toast.open && (
-        <Toast
-          variant={toast.variant}
-          open={toast.open}
-          onOpenChange={(v) => setToast({ ...toast, open: v })}
-        >
-          <ToastTitle>{toast.variant === "destructive" ? "Error" : "Success"}</ToastTitle>
-          <ToastDescription>{toast.message}</ToastDescription>
-          <ToastClose />
-        </Toast>
+      {popup.open && (
+        <div className={`popup-error ${popup.type}`}>
+          <RiCloseLine
+            size={24}
+            onClick={closePopup}
+            className="close-btn"
+            style={{ cursor: "pointer", float: "right" }}
+          />
+          <p>{popup.message}</p>
+        </div>
       )}
     </div>
   );

@@ -6,18 +6,18 @@ import { useLoading } from "../components/LoadingContext";
 
 export default function LoginForm({ onSuccess, onOpenAuth }) {
   const { signIn, authError } = useAuth();
+  const { setLoading } = useLoading();
+
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
   const [popupVisible, setPopupVisible] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
-  const { setLoading } = useLoading();
-
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setLoading(true); // Show loading state
-    setPopupVisible(false); // Hide any existing popup
+    setLoading(true);
+    setPopupVisible(false);
     try {
       setError("");
       const success = await signIn(email, password);
@@ -31,13 +31,11 @@ export default function LoginForm({ onSuccess, onOpenAuth }) {
       setError("Failed to sign in. Please check your credentials and try again.");
       setPopupVisible(true);
     } finally {
-      setLoading(false); // Hide loading state
+      setLoading(false);
     }
   };
 
-  const closePopup = () => {
-    setPopupVisible(false);
-  };
+  const closePopup = () => setPopupVisible(false);
 
   return (
     <>
@@ -46,7 +44,7 @@ export default function LoginForm({ onSuccess, onOpenAuth }) {
           <RiCloseLine
             size={24}
             onClick={closePopup}
-            color="white"
+            color="blue"
             className="close-btn"
             style={{ cursor: "pointer" }}
           />
@@ -55,6 +53,7 @@ export default function LoginForm({ onSuccess, onOpenAuth }) {
       )}
 
       <form className="login-form" onSubmit={handleSubmit}>
+        {/* Email */}
         <div className="form-group">
           <label htmlFor="email" className="form-label">
             Email address
@@ -70,6 +69,7 @@ export default function LoginForm({ onSuccess, onOpenAuth }) {
           />
         </div>
 
+        {/* Password */}
         <div className="form-group password-wrapper">
           <label htmlFor="password" className="form-label">
             Password
@@ -101,8 +101,19 @@ export default function LoginForm({ onSuccess, onOpenAuth }) {
           </div>
         </div>
 
-        <div className="form-options" style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
-          <label className="checkbox-wrapper" style={{ display: "flex", alignItems: "center" }}>
+        {/* Options */}
+        <div
+          className="form-options"
+          style={{
+            display: "flex",
+            justifyContent: "space-between",
+            alignItems: "center",
+          }}
+        >
+          <label
+            className="checkbox-wrapper"
+            style={{ display: "flex", alignItems: "center" }}
+          >
             <input type="checkbox" name="remember-me" className="checkbox" />
             <span style={{ marginLeft: "0.5rem" }}>Remember me</span>
           </label>
@@ -115,6 +126,7 @@ export default function LoginForm({ onSuccess, onOpenAuth }) {
           </span>
         </div>
 
+        {/* Submit */}
         <button type="submit" className="submit-button">
           Sign In
         </button>

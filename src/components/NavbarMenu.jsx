@@ -35,8 +35,8 @@ const NavbarMenu = ({ onLinkClick }) => {
 
         <div className="nav-section-title">Health Tools</div>
         <div className="nav-submenu">
-          <Link to="/symptom-checker" className="nav-sublink" onClick={onLinkClick}>Symptom Checker</Link>
-          <Link to="/health-calculators" className="nav-sublink" onClick={onLinkClick}>Health Calculators</Link>
+          {/* <Link to="/symptom-checker" className="nav-sublink" onClick={onLinkClick}>Symptom Checker</Link> */}
+          <Link to="/health-calculators" className="nav-sublink" onClick={onLinkClick}>Health Calculators</Link> 
           <Link to="/nutrition-guide" className="nav-sublink" onClick={onLinkClick}>Nutrition Guide</Link>
           {/* <Link to="/emergency-guide" className="nav-sublink" onClick={onLinkClick}>Emergency Guide</Link> */}
         </div>
@@ -46,7 +46,7 @@ const NavbarMenu = ({ onLinkClick }) => {
             <div className="nav-section-title">My Health</div>
             <div className="nav-submenu">
               <Link to="/health-dashboard" className="nav-sublink" onClick={onLinkClick}>Health Dashboard</Link>
-              <Link to="/medication-tracker" className="nav-sublink" onClick={onLinkClick}>Medication Tracker</Link>
+              {/* <Link to="/medication-tracker" className="nav-sublink" onClick={onLinkClick}>Medication Tracker</Link> */}
               <Link to="/my-dashboard" className="nav-sublink" onClick={onLinkClick}>My Dashboard</Link>
             </div>
           </>

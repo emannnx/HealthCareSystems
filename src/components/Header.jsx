@@ -32,6 +32,10 @@ const Header = () => {
 
   const toggleMenu = () => setMenuOpen(prev => !prev);
 
+  const handleSuggestionClick = (topic) => {
+    navigate(`/health-search?query=${encodeURIComponent(topic)}`);
+  };
+
   const openDialog = () => setDialogOpen(true);
   const closeDialog = () => {
     setDialogOpen(false);
@@ -64,6 +68,7 @@ const Header = () => {
         setLoading(true);
         try {
           const response = await fetch(`https://searchcondition.onrender.com/searches/get/${query.trim()}`);
+          // const response = await fetch(`https://searchcondition.onrender.com/searches/smart-search/${(query.trim())}`);
           if (!response.ok) throw new Error('No results');
           const data = await response.json();
           const resultsArray = Array.isArray(data) ? data : [data];
@@ -83,6 +88,31 @@ const Header = () => {
   
     return () => clearTimeout(timer); // Cancel previous search on new keystroke
   }, [query]);
+  
+  useEffect(() => {
+    const fetchAllConditions = async () => {
+      if (!dialogOpen) return;
+  
+      setLoading(true);
+      try {
+        const response = await fetch('https://searchcondition.onrender.com/searches/getAll'); // <- make sure this endpoint returns all
+        if (!response.ok) throw new Error('Failed to fetch conditions');
+        const data = await response.json();
+        const names = data.map(item => item.name);
+        setSuggestions(names); // this updates the default suggestions pool
+        setFilteredSuggestions(names); // show all by default when dialog opens
+        setError('');
+      } catch (err) {
+        setSuggestions([]);
+        setFilteredSuggestions([]);
+        setError('Failed to load conditions');
+      } finally {
+        setLoading(false);
+      }
+    };
+  
+    fetchAllConditions();
+  }, [dialogOpen]);
   
   
 
@@ -108,7 +138,7 @@ const Header = () => {
                 <div className={`dropdown ${isHealthToolsActive() ? 'active-links' : ''}`}>
                   <p className="navs-link dropdown-trigger">Health Tools</p>
                   <div className="dropdown-menu">
-                    <Link to="/symptom-checker" className="dropdown-item">Symptom Checker</Link>
+                    {/* <Link to="/symptom-checker" className="dropdown-item">Symptom Checker</Link> */}
                     <Link to="/health-calculators" className="dropdown-item">Health Calculators</Link>
                     <Link to="/nutrition-guide" className="dropdown-item">Nutrition Guide</Link>
                     {/* <Link to="/emergency-guide" className="dropdown-item">Emergency Guide</Link> */}
@@ -120,7 +150,7 @@ const Header = () => {
                     <p className="navs-link dropdown-trigger">My Health</p>
                     <div className="dropdown-menu">
                       <Link to="/health-dashboard" className="dropdown-item">Health Dashboard</Link>
-                      <Link to="/medication-tracker" className="dropdown-item">Medication Tracker</Link>
+                      {/* <Link to="/medication-tracker" className="dropdown-item">Medication Tracker</Link> */}
                       <Link to="/my-dashboard" className="dropdown-item">My Dashboard</Link>
                     </div>
                   </div>
@@ -258,20 +288,30 @@ const Header = () => {
               <p className="topic">Health Topics</p>
             </div>
 
-            {loading && <p className="search-loading">Loading...</p>}
-{error && <p className="search-error">{error}</p>}
-{filteredSuggestions.length > 0 && (
-  <ul className="suggestion-list">
-    {filteredSuggestions.map((suggestion, index) => (
-      <li key={index} onClick={() => {
-        navigate(`/health-topics/${encodeURIComponent(suggestion)}`);
-        closeDialog();
-      }}>
-        {suggestion}
-      </li>
-    ))}
-  </ul>
-)}
+            {loading ? (
+        <div className="loader-container">
+        <div className="loader"></div>
+      </div>
+      ) : filteredSuggestions.length > 0 ? (
+        <ul className="suggestion-list">
+          {filteredSuggestions.map((suggestion, index) => (
+            <li
+              key={index}
+              onClick={() => {
+                handleSuggestionClick(suggestion);
+                closeDialog();
+              }}
+              className="search-result-item"
+              style={{ cursor: 'pointer' }}
+            >
+              {suggestion}
+            </li>
+          ))}
+        </ul>
+      ) : (
+        error && <div className="error-message">{error}</div>
+      )}
+
 
           </div>
         </div>

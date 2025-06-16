@@ -182,3 +182,141 @@
     text-align: right;
     margin-top: 1.5rem;
   }
+
+  .mood-tracker-container {
+    background: linear-gradient(to bottom right, #0f0f0f, #1c1c1e);
+    color: #fff;
+    padding: 16px;
+    min-height: 100vh;
+    font-family: 'Inter', sans-serif;
+  }
+  
+  .tracker-header {
+    text-align: center;
+    margin-bottom: 1rem;
+  }
+  
+  .tracker-header h1 {
+    font-size: 24px;
+    font-weight: 700;
+    color: #00BFFF;
+  }
+  
+  .tracker-sub {
+    font-size: 14px;
+    color: #aaa;
+  }
+  
+  .mood-tracker-container {
+    background: linear-gradient(145deg, #0a0a0a, #1c1c1e);
+    color: #ffffff;
+    min-height: 100vh;
+    padding: 1.2rem;
+    font-family: 'Inter', sans-serif;
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  /* Moody ambient blobs for glow effect */
+  .mood-tracker-container::before,
+  .mood-tracker-container::after {
+    content: '';
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(60px);
+    opacity: 0.4;
+    z-index: 0;
+  }
+  
+  .mood-tracker-container::before {
+    width: 300px;
+    height: 300px;
+    top: -80px;
+    left: -60px;
+    background: #00bfff;
+  }
+  
+  .mood-tracker-container::after {
+    width: 250px;
+    height: 250px;
+    bottom: -60px;
+    right: -40px;
+    background: #ff00cc;
+  }
+  
+  .tracker-header {
+    z-index: 1;
+    text-align: center;
+    margin-bottom: 1rem;
+  }
+  
+  .tracker-header h1 {
+    font-size: 26px;
+    font-weight: bold;
+    color: #00bfff;
+  }
+  
+  .tracker-sub {
+    font-size: 14px;
+    color: #ccc;
+    margin-top: 0.2rem;
+  }
+  
+  .mood-visual-section {
+    z-index: 1;
+    display: flex;
+    justify-content: center;
+    margin: 24px 0;
+  }
+  
+  .mood-visual-section img {
+    width: 90%;
+    max-width: 300px;
+    border-radius: 24px;
+    box-shadow: 0 0 20px rgba(0, 191, 255, 0.3);
+    transition: transform 0.3s ease;
+  }
+  
+  .mood-visual-section img:hover {
+    transform: scale(1.03);
+  }
+  
+
+  .download-banner {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    padding: 16px;
+    border-radius: 16px;
+    text-align: center;
+    margin-top: 32px;
+    z-index: 1;
+    backdrop-filter: blur(10px);
+    box-shadow: 0 4px 12px rgba(0, 191, 255, 0.1);
+  }
+  
+  .bannner-text {
+    color: #e0e0e0;
+    font-size: 14px;
+    margin-bottom: 12px;
+  }
+  
+  .download-button {
+    background: linear-gradient(135deg, #00bfff, #0080ff);
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 999px;
+    font-weight: 600;
+    cursor: pointer;
+    font-size: 14px;
+    transition: all 0.3s ease;
+  }
+  
+  .download-button:hover {
+    background: linear-gradient(135deg, #00d9ff, #0070e0);
+    transform: scale(1.05);
+  }
+  

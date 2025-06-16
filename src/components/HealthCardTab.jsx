@@ -15,7 +15,9 @@ const HealthCardTab = ({ query }) => {
       setError(null);
 
       try {
-        const response = await fetch(`https://searchcondition.onrender.com/searches/get/${query.trim()}`);
+        const response = await fetch(
+          `https://searchcondition.onrender.com/searches/get/${query.trim()}`
+        );
         if (!response.ok) {
           throw new Error("Network response was not ok");
         }
@@ -35,7 +37,13 @@ const HealthCardTab = ({ query }) => {
     setActiveTab(tab);
   };
 
-  if (loading) return <div className="health-cards">Loading disease data...</div>;
+  if (loading)
+    return (
+      <div className="loader-wrapper">
+        <div className="loader"></div>
+      </div>
+    );
+
   if (error) return <div className="health-cards">{error}</div>;
   if (!disease) return <div className="health-cards">No disease data available.</div>;
 
@@ -46,7 +54,6 @@ const HealthCardTab = ({ query }) => {
         <p>{disease.overview}</p>
       </div>
     ),
-  
     symptoms: (
       <div className="content-section">
         <h3>Symptoms</h3>
@@ -61,7 +68,6 @@ const HealthCardTab = ({ query }) => {
         )}
       </div>
     ),
-  
     management: (
       <div className="content-section">
         <h3>Management</h3>
@@ -76,7 +82,6 @@ const HealthCardTab = ({ query }) => {
         )}
       </div>
     ),
-  
     prevention: (
       <div className="content-section">
         <h3>Prevention</h3>
@@ -91,7 +96,6 @@ const HealthCardTab = ({ query }) => {
         )}
       </div>
     ),
-  
     treatment: (
       <div className="content-section">
         <h3>Treatment</h3>
@@ -107,7 +111,6 @@ const HealthCardTab = ({ query }) => {
       </div>
     ),
   };
-  
 
   return (
     <div className="health-cards">

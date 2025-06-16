@@ -30,7 +30,7 @@ import ErrorBoundary from "./Pages/ErrorBoundary";
 import "./components/Hero-components/MainHero.css";
 import ArticlesList from "./components/ArticlesList";
 import ArticleDetail from "./components/ArticleDetail.jsx";
-import MoodTracker from "./components/Mood/MoodTracker.jsx";
+import MoodTracker from "./components/MoodTracker.jsx";
 import MyDashboard from "./components/MyDashboard.jsx";
 import HealthCardTab from './components/HealthCardTab';
 import { LoadingProvider, useLoading } from "./components/LoadingContext.jsx";
