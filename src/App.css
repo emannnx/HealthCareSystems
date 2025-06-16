@@ -582,6 +582,28 @@
   color: #fff;
 }
 
+.content.dark .nutrition-title {
+  color: #fff;
+}
+
+.content.dark .nutritions-cards-container{
+  background-color: #020817;
+  color: #fff;
+  border: 1px solid #1E293B;
+}
+
+.content.dark .nutritions-cards-title {
+  color: #fff;
+}
+
+.content.dark .nutritions-cards-subtitle {
+  color: #888;
+}
+
+.content.dark .nutritions-cards-icon {
+  color: #fff;
+}
+
 @media (max-width: 768px) {
   .content {
     margin-top: 4rem;
