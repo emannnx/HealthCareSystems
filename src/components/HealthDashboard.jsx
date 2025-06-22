@@ -50,7 +50,7 @@ const HealthDashboard = () => {
         </div>
       </Link>
 
-      {/* <Link to="/medication-tracker">
+      <Link to="/medication-tracker">
         <div className="ccards">
           <div className="card-content">
             <div className="card-inner">
@@ -68,9 +68,9 @@ const HealthDashboard = () => {
             </div>
           </div>
         </div>
-      </Link> */}
+      </Link>
 
-      {/* <Link to="/symptom-checker">
+      <Link to="/symptom-checker">
         <div className="ccards">
           <div className="card-content">
             <div className="card-inner">
@@ -101,7 +101,7 @@ const HealthDashboard = () => {
             </div>
           </div>
         </div>
-      </Link> */}
+      </Link>
 
       <Link to="/health-calculators">
         <div className="ccards">

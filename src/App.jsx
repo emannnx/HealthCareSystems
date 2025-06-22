@@ -36,6 +36,8 @@ import HealthCardTab from './components/HealthCardTab';
 import { LoadingProvider, useLoading } from "./components/LoadingContext.jsx";
 import LoadingOverlay from "./components/LoadingOverlay.jsx";
 import { ToastProvider } from "@radix-ui/react-toast";
+import Telehealth from "./components/Telehealth.jsx";
+import ExerciseLibrary from "./components/ExerciseLibrary.jsx";
 
 const ScrollToTop = () => {
   const { pathname } = useLocation();
@@ -86,6 +88,10 @@ const AppContent = () => {
             <Route path="/emergency-guide" element={<EmergencyGuide />} />
             <Route path="/articles-list" element={<ArticlesList />} />
             <Route path="/articles-list/:articleId" element={<ArticleDetail />} />
+            <Route path="/telehealth" element={<Telehealth />} />
+            <Route path="/exercise-library" element={<ExerciseLibrary />} />
+
+            {/* Private routes */}
 
             <Route
               path="/mood-tracker"

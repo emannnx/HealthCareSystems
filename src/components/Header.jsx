@@ -86,7 +86,7 @@ const Header = () => {
       fetchSuggestions();
     }, 300); // Debounce delay
   
-    return () => clearTimeout(timer); // Cancel previous search on new keystroke
+    return () => clearTimeout(timer); // Cancel previous search on new keystroke=[]
   }, [query]);
   
   useEffect(() => {
@@ -138,10 +138,11 @@ const Header = () => {
                 <div className={`dropdown ${isHealthToolsActive() ? 'active-links' : ''}`}>
                   <p className="navs-link dropdown-trigger">Health Tools</p>
                   <div className="dropdown-menu">
-                    {/* <Link to="/symptom-checker" className="dropdown-item">Symptom Checker</Link> */}
+                    <Link to="/symptom-checker" className="dropdown-item">Symptom Checker</Link>
                     <Link to="/health-calculators" className="dropdown-item">Health Calculators</Link>
                     <Link to="/nutrition-guide" className="dropdown-item">Nutrition Guide</Link>
-                    {/* <Link to="/emergency-guide" className="dropdown-item">Emergency Guide</Link> */}
+                    <Link to="/exercise-library" className="dropdown-item">Exercise Library</Link>
+                    <Link to="/emergency-guide" className="dropdown-item">Emergency Guide</Link>
                   </div>
                 </div>
 
@@ -150,11 +151,15 @@ const Header = () => {
                     <p className="navs-link dropdown-trigger">My Health</p>
                     <div className="dropdown-menu">
                       <Link to="/health-dashboard" className="dropdown-item">Health Dashboard</Link>
-                      {/* <Link to="/medication-tracker" className="dropdown-item">Medication Tracker</Link> */}
-                      <Link to="/my-dashboard" className="dropdown-item">My Dashboard</Link>
+                      <Link to="/medication-tracker" className="dropdown-item">Medication Tracker</Link>
+                    <Link to="/telehealth" className="dropdown-item">TeleHealth</Link>
+                    <Link to="/my-dashboard" className="dropdown-item">My Dashboard</Link>
                     </div>
                   </div>
                 )}
+                
+                <Link to="/community-forum" className={`nav-link ${isActive('/community') ? 'active-link' : ''}`}><p>Community</p></Link>
+
               </div>
             </div>
 
