@@ -106,6 +106,7 @@ const CalorieCalculator = () => {
         <div className="calorie-field">
           <label htmlFor="activity">Activity Level</label>
           <select
+          className='activiii'
             id="activity"
             value={formData.activityLevel}
             onChange={(e) => setFormData({ ...formData, activityLevel: e.target.value })}

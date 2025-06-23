@@ -83,10 +83,15 @@
 }
 
 .heartrate-summary {
-  background-color: #f0fdf4;
+  background-color: #F3FAFE;
   padding: 1rem;
   border-radius: 6px;
   margin-bottom: 1.5rem;
+  color: #212529;
+}
+
+.heartrate-summary h3{
+  margin: 0
 }
 
 .heartrate-summary-values {
@@ -114,6 +119,16 @@
   justify-content: space-between;
   font-size: 0.95rem;
   margin-bottom: 0.3rem;
+}
+
+.heartrate-zone-name {
+  color: #212529;
+  font-weight: 600;
+}
+
+.heartrate-zone-range {
+  color: #4b5563;
+  font-size: 0.9rem;
 }
 
 .heartrate-zone-bpm {
