@@ -1,12 +1,19 @@
 import React, { useState } from 'react';
 import './HealthCalculators.css';
 import BMICalculator from './BMICalculator';
-import HeartRateCalculator from './HeartRateZone';
+import HeartrateZone from './HeartrateZone';
 import CalorieCalculator from './CalorieCalculator';
 import { Link } from 'react-router-dom';
 
 const HealthCalculators = () => {
   const [activeTab, setActiveTab] = useState('bmi');
+
+  const tabs = [
+    { id: 'bmi', label: 'BMI Calculator' },
+    { id: 'heart-rate', label: 'Heart Rate Zones' },
+    { id: 'calories', label: 'Calorie Calculator' },
+    { id: 'medication', label: 'Medication Dosage' },
+  ];
 
   return (
     <div className="calculators-container">
@@ -16,36 +23,25 @@ const HealthCalculators = () => {
           <p>Useful tools to calculate important health metrics and track your progress.</p>
         </div>
 
-        <div className="calculators-tabs">
-          <button
-            className={activeTab === 'bmi' ? 'calculators-tab calculators-active' : 'calculators-tab'}
-            onClick={() => setActiveTab('bmi')}
-          >
-            BMI Calculator
-          </button>
-          <button
-            className={activeTab === 'heart-rate' ? 'calculators-tab calculators-active' : 'calculators-tab'}
-            onClick={() => setActiveTab('heart-rate')}
-          >
-            Heart Rate Zones
-          </button>
-          <button
-            className={activeTab === 'calories' ? 'calculators-tab calculators-active' : 'calculators-tab'}
-            onClick={() => setActiveTab('calories')}
-          >
-            Calorie Calculator
-          </button>
-          <button
-            className={activeTab === 'medication' ? 'calculators-tab calculators-active' : 'calculators-tab'}
-            onClick={() => setActiveTab('medication')}
-          >
-            Medication Dosage
-          </button>
-        </div>
+        <div className="calculators-tabs" role="tablist" aria-orientation="horizontal">
+      {tabs.map(({ id, label }) => (
+        <button
+          key={id}
+          type="button"
+          role="tab"
+          aria-selected={activeTab === id}
+          aria-controls={`content-${id}`}
+          className={`calculators-tabs-trigger ${activeTab === id ? 'active' : ''}`}
+          onClick={() => setActiveTab(id)}
+        >
+          {label}
+        </button>
+      ))}
+    </div>
 
         <div className="calculators-tab-content">
           {activeTab === 'bmi' && <BMICalculator />}
-          {activeTab === 'heart-rate' && <HeartRateCalculator />}
+          {activeTab === 'heart-rate' && <HeartrateZone />}
           {activeTab === 'calories' && <CalorieCalculator />}
           {activeTab === 'medication' && (
             <div className="calculators-card">

@@ -3,6 +3,7 @@
     padding: 1.5rem;
     border-radius: 8px;
     box-shadow: 0 0 12px rgba(0,0,0,0.05);
+    width: 100%;
   }
   
   .calorie-header {
@@ -11,6 +12,7 @@
   
   .calorie-title {
     font-size: 1.5rem;
+    color: #212529;
     font-weight: bold;
   }
   
@@ -41,6 +43,11 @@
     display: flex;
     flex-direction: column;
     gap: 0.4rem;
+  }
+
+  .calorie-field label{
+    font-weight: 6  00;
+    color: #333;
   }
   
   .calorie-button {

@@ -3,8 +3,9 @@
   background: white;
   border-radius: 8px;
   border: 1px solid #e5e7eb;
-  max-width: 700px;
-  margin: 0 auto;
+  /* max-width: 700px; */
+  /* margin: 0 auto; */
+  width: 100%;
 }
 
 .heartrate-card-header h2 {
@@ -13,17 +14,24 @@
   align-items: center;
   gap: 0.5rem;
   margin-bottom: 0.5rem;
+  color: #212529;
+  margin: 0;
 }
 
 .heartrate-card-header p {
   color: #6b7280;
   font-size: 0.9rem;
+  margin: 0;
+}
+
+.heart-icon{
+  color: #86D0F8;
 }
 
 .heartrate-icon {
   width: 1.2rem;
   height: 1.2rem;
-  color: #ef4444;
+  /* color: #86D0F8; */
 }
 
 .heartrate-input-group {
@@ -42,7 +50,7 @@
 .heartrate-input-field label {
   display: block;
   margin-bottom: 0.3rem;
-  font-weight: 500;
+  font-weight: 600;
 }
 
 .heartrate-input-field input {
@@ -66,7 +74,7 @@
 }
 
 .heartrate-button:disabled {
-  background-color: #d1d5db;
+  background-color: #86D0F8;
   cursor: not-allowed;
 }
 

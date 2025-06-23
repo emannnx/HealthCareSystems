@@ -58,7 +58,7 @@ const HeartrateZone = () => {
   return (
     <div className="heartrate-card">
       <div className="heartrate-card-header">
-        <h2><Heart className="heartrate-icon" /> Heart Rate Zones Calculator</h2>
+        <h2><Heart className="heart-icon" /> Heart Rate Zones Calculator</h2>
         <p>Calculate your target heart rate zones for optimal training</p>
       </div>
 

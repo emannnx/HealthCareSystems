@@ -1,4 +1,6 @@
 import React, { useState } from 'react';
+import './CalorieCalculator.css'; // Assuming you have a CSS file for styling
+import { Utensils, Activity } from 'lucide-react';
 
 const CalorieCalculator = () => {
   const [formData, setFormData] = useState({
@@ -52,7 +54,7 @@ const CalorieCalculator = () => {
   return (
     <div className="calorie-card">
       <div className="calorie-header">
-        <h2 className="calorie-title">Daily Calorie Calculator</h2>
+        <h2 className="calorie-title"> <Utensils/> Daily Calorie Calculator</h2>
         <p className="calorie-description">Calculate your daily caloric needs based on your goals</p>
       </div>
       <div className="calorie-form">
@@ -117,9 +119,16 @@ const CalorieCalculator = () => {
           </select>
         </div>
 
-        <button onClick={calculateCalories} className="calorie-button">
+        {/* <button onClick={calculateCalories} className="calorie-button">
           Calculate Daily Calories
-        </button>
+        </button> */}
+
+        <button
+        onClick={calculateCalories}
+        className="heartrate-button"
+      >
+        <Activity className="heartrate-icon" /> Calculate Heart Rate Zones
+      </button>
 
         {results && (
           <div className="calorie-results">
