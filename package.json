@@ -10,6 +10,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@google/generative-ai": "^0.24.1",
     "@radix-ui/react-slot": "^1.2.2",
     "@radix-ui/react-tabs": "^1.1.11",
     "@radix-ui/react-toast": "^1.2.13",
@@ -23,6 +24,7 @@
     "react-icons": "^5.5.0",
     "react-router-dom": "^7.5.0",
     "react-select": "^5.10.1",
+    "recharts": "^3.0.0",
     "tailwind-variants": "^1.0.0"
   },
   "devDependencies": {

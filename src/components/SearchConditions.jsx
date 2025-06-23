@@ -1,154 +1,3 @@
-// import React, { useState } from 'react';
-// import './SearchConditions.css';
-// import HealthCardTab from './HealthCardTab';
-
-// const healthTopics = [
-//   {
-//     title: 'Cardiovascular Health',
-//     description: 'Learn about heart disease, high blood pressure, and ways to maintain cardiovascular health.',
-//   },
-//   {
-//     title: 'Diabetes Management',
-//     description: 'Information on managing diabetes, blood sugar monitoring, and healthy living strategies.',
-//   },
-//   {
-//     title: 'Mental Health',
-//     description: 'Resources for anxiety, depression, stress management, and overall mental wellbeing.',
-//   },
-//   {
-//     title: 'Nutrition & Diet',
-//     description: 'Expert advice on balanced diets, nutritional needs, and healthy eating habits.',
-//   },
-//   {
-//     title: 'Fitness & Exercise',
-//     description: 'Exercise recommendations, workout plans, and physical activity guidelines for all ages.',
-//   },
-//   {
-//     title: 'Sleep & Recovery',
-//     description: 'Importance of sleep, recovery strategies, and tips for better rest.',
-//   },
-// ];
-
-// const SearchConditions = () => {
-//   const [searchTerm, setSearchTerm] = useState('');
-//   const [searchedTerm, setSearchedTerm] = useState('');
-//   const [selectedTopic, setSelectedTopic] = useState(null);
-
-//   const handleSubmit = (e) => {
-//     e.preventDefault();
-//     if (searchTerm.trim()) {
-//       setSearchedTerm(searchTerm.trim());
-//       setSelectedTopic(null);
-//     }
-//   };
-
-//   const filteredTopics =
-//     searchedTerm.toLowerCase() === 'all'
-//       ? healthTopics
-//       : healthTopics.filter((topic) =>
-//           topic.title.toLowerCase().startsWith(searchedTerm.toLowerCase())
-//         );
-
-//   return (
-//     <div className="containers">
-//       <h1 className="title">Health Condition Search</h1>
-
-//       <form onSubmit={handleSubmit} className="search-form">
-//         <div className="form-row">
-//           <div className="input-wrapper">
-//             <svg
-//               xmlns="http://www.w3.org/2000/svg"
-//               width="24"
-//               height="24"
-//               viewBox="0 0 24 24"
-//               fill="none"
-//               stroke="currentColor"
-//               strokeWidth="2"
-//               strokeLinecap="round"
-//               strokeLinejoin="round"
-//               className="searchs-icons"
-//             >
-//               <circle cx="11" cy="11" r="8"></circle>
-//               <path d="m21 21-4.3-4.3"></path>
-//             </svg>
-//             <input
-//               type="text"
-//               placeholder="Search for health conditions..."
-//               value={searchTerm}
-//               onChange={(e) => setSearchTerm(e.target.value)}
-//               className="searchs-inputs"
-//             />
-//           </div>
-//           <button type="submit" className="search-buttons">
-//             Search
-//           </button>
-//         </div>
-//       </form>
-
-//       <div className="search-info">
-//         {selectedTopic === 'Cardiovascular Health' && <HealthCardTab />}
-
-//         {!selectedTopic && searchedTerm ? (
-//           filteredTopics.length > 0 ? (
-//             <div className="health-grid">
-//               {filteredTopics.map((topic, index) => (
-//                 <div
-//                   key={index}
-//                   className="health-card"
-//                   onClick={() => {
-//                     if (topic.title === 'Cardiovascular Health') {
-//                       setSelectedTopic(topic.title);
-//                     }
-//                   }}
-//                   style={{ cursor: topic.title === 'Cardiovascular Health' ? 'pointer' : 'default' }}
-//                 >
-//                   <div className="card-headerr">
-//                     <h3 className="card-title">{topic.title}</h3>
-//                     <p className="card-description">{topic.description}</p>
-//                   </div>
-//                 </div>
-//               ))}
-//             </div>
-//           ) : (
-//             <p>
-//               No matching health topics found for "<strong>{searchedTerm}</strong>".
-//             </p>
-//           )
-//         ) : null}
-
-//         {!searchedTerm && !selectedTopic && (
-//           <>
-//             <div className="icon-circle">
-//               <svg
-//                 xmlns="http://www.w3.org/2000/svg"
-//                 width="24"
-//                 height="24"
-//                 viewBox="0 0 24 24"
-//                 fill="none"
-//                 stroke="currentColor"
-//                 strokeWidth="2"
-//                 strokeLinecap="round"
-//                 strokeLinejoin="round"
-//                 className="search-info-icon"
-//               >
-//                 <circle cx="11" cy="11" r="8"></circle>
-//                 <path d="m21 21-4.3-4.3"></path>
-//               </svg>
-//             </div>
-//             <h3 className="search-heading">Search for health conditions</h3>
-//             <p className="search-description">
-//               Enter a condition name like "diabetes", "nutrition", or type "all" to see every topic.
-//             </p>
-//           </>
-//         )}
-//       </div>
-//     </div>
-//   );
-// };
-
-// export default SearchConditions;
-
-
 import React, { useState, useEffect } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import './SearchConditions.css';
@@ -165,20 +14,24 @@ const SearchConditions = () => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
 
-  // Auto-search when component loads and query param is present
+  // Auto-search with debounce
   useEffect(() => {
-    if (initialQuery) {
-      autoSearch(initialQuery);
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [initialQuery]);
+    const handler = setTimeout(() => {
+      if (searchTerm.trim()) {
+        autoSearch(searchTerm);
+      }
+    }, 300);
+
+    return () => {
+      clearTimeout(handler);
+    };
+  }, [searchTerm]);
 
   const autoSearch = async (term) => {
-    const trimmedTerm = term.trim().toLowerCase();
-    if (!trimmedTerm) return;
+    const trimmed = term.trim()
+    if (!trimmed) return;
 
-    setSearchTerm(trimmedTerm);
-    setSearchedTerm(trimmedTerm);
+    setSearchedTerm(trimmed);
     setSelectedTopic(null);
     setLoading(true);
     setError('');
@@ -186,9 +39,9 @@ const SearchConditions = () => {
 
     try {
       const url =
-        trimmedTerm === 'all'
-          ? `https://searchcondition.onrender.com/searches/getAll`
-          : `https://searchcondition.onrender.com/searches/get/${trimmedTerm}`;
+        trimmed.toLowerCase() === 'all'
+          ? 'https://searchcondition.onrender.com/searches/getAll'
+          : `https://searchcondition.onrender.com/searches/search?q=${encodeURIComponent(trimmed)}`;
 
       const response = await fetch(url);
       if (!response.ok) {
@@ -205,15 +58,10 @@ const SearchConditions = () => {
     }
   };
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    autoSearch(searchTerm);
-  };
-
   return (
     <div className="containers">
       <h1 className="title">Health Condition Search</h1>
-      <form onSubmit={handleSubmit} className="search-form">
+      <div className="search-form">
         <div className="form-row">
           <div className="input-wrapper">
             <svg
@@ -239,11 +87,8 @@ const SearchConditions = () => {
               className="searchs-inputs"
             />
           </div>
-          <button type="submit" className="search-buttons">
-            Search
-          </button>
         </div>
-      </form>
+      </div>
 
       <div className="search-info">
         {loading && (
@@ -296,8 +141,8 @@ const SearchConditions = () => {
             </div>
             <h3 className="search-heading">Search for health conditions</h3>
             <p className="search-description">
-              Enter a condition name like <strong>{searchTerm || 'diabetes'}</strong>,{' '}
-              <strong>nutrition</strong>, or type <strong>all</strong> to see every topic.
+              Start typing a condition like <strong>tuberculosis</strong>, <strong>cholera</strong>, or{' '}
+              <strong>all</strong> to see everything.
             </p>
           </>
         )}

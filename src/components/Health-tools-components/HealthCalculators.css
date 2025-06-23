@@ -1,127 +1,119 @@
-.health-calculators-container {
-    text-align: center;
-    padding-top: 3rem;
-    background-color: #F8FAFC;
-    padding-bottom: 5rem;
-  }
+.calculators-container {
+  padding: 20px;
+  font-family: sans-serif;
+}
 
+.calculators-main-content {
+  max-width: 960px;
+  margin: 0 auto;
+}
 
-  
-  .health-calculators-title {
-    font-size: 1.875rem;
-    font-weight: bold;
-    color: var(--foreground, #000);
-    transition: color 0.3s ease;
-    margin-bottom: 0.5rem;
-  }
-  
-  .health-calculators-description {
-    color: var(--muted-foreground, #666);
-    max-width: 40rem;
-    margin: 0 auto;
-    transition: color 0.3s ease;
-    margin-bottom: 1.5rem;
-  }
+.calculators-header-section {
+  text-align: center;
+  margin-bottom: 2rem;
+}
 
-  .mee{
-    display:   flex;
-    justify-content: center;
-    gap: 20rem;
-  }
+.calculators-header-section h1 {
+  font-size: 2rem;
+  margin-bottom: 0.5rem;
+}
 
-  .calculator-card {
-    max-width: 430px;
-    padding: 10px;
-    border: 1px solid #ddd;
-    border-radius: 8px;
-    background: #fff;
-    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
-    font-family: sans-serif;
-  }
+.calculators-tabs {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-bottom: 20px;
+}
 
-  @media screen and (max-width: 768px) {
-    .calculator-card {
-      margin-bottom: 3rem;
-    }
-    
-  }
-  
-  @media (max-width: 768px) {
-   .mee{
-    flex-direction: column;
-    width: 90%;
-    gap: 0;
-   }
+.calculators-tab {
+  padding: 10px 16px;
+  border: 1px solid #ccc;
+  background-color: #f9f9f9;
+  cursor: pointer;
+  border-radius: 4px;
+  font-weight: 500;
+  transition: background 0.2s;
+}
 
-   .health-calculators-container{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-   }
-  }
+.calculators-tab:hover {
+  background-color: #eaeaea;
+}
 
-  .more-health-tools-container {
-    margin-top: 3rem;
-    text-align: center;
-    width: 70%;
-    margin-left: auto;
-    margin-right: auto;
-  }
+.calculators-active {
+  background-color: #007bff;
+  color: white;
+  border-color: #007bff;
+}
 
-  @media (max-width: 768px) {
-    .more-health-tools-container{
-      width: 100%;
-      padding-left: 1rem;
-      padding-right: 1rem;
-    }
-  }
-  
-  
-  .section-title {
-    font-size: 1.5rem;
-    font-weight: bold;
-    color: #1f2937;
-    margin-bottom: 1rem;
-  }
-  
-  .tools-grid {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 1rem;
-  }
-  
-  @media (min-width: 640px) {
-    .tools-grid {
-      grid-template-columns: repeat(2, 1fr);
-    }
-  }
-  
-  @media (min-width: 768px) {
-    .tools-grid {
-      grid-template-columns: repeat(2, 1fr);
-    }
-  }
-  
-  .tool-card {
-    padding: 1rem;
-    background-color: rgba(59, 130, 246, 0.05);
-    border-radius: 0.5rem;
-    transition: background-color 0.2s ease-in-out;
-    text-decoration: none;
-  }
-  
-  .tool-card:hover {
-    background-color: rgba(59, 130, 246, 0.1); /* hover:bg-primary/10 */
-  }
-  
-  .tool-title {
-    font-weight: 500;
-    color: #3b82f6; /* text-primary */
-  }
-  
-  .tool-description {
-    font-size: 0.875rem;
-    color: #6b7280; /* text-muted-foreground */
-    margin-top: 0.25rem;
-  }
-  
+.calculators-tab-content {
+  margin-bottom: 2rem;
+  display: flex;
+  justify-content: center;
+}
+
+.calculators-card {
+  background: #fff;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  padding: 16px;
+}
+
+.calculators-card-header h2 {
+  margin-bottom: 0.5rem;
+}
+
+.calculators-card-warning {
+  background-color: #fff3cd;
+  border: 1px solid #ffeeba;
+  padding: 12px;
+  border-radius: 4px;
+  margin: 12px 0;
+  color: #856404;
+}
+
+.calculators-card-content {
+  margin: 12px 0;
+  color: #333;
+}
+
+.calculators-card-footer {
+  font-size: 0.9rem;
+  color: #666;
+}
+
+.calculators-more-tools {
+  text-align: center;
+}
+
+.calculators-more-tools h2 {
+  margin-bottom: 1rem;
+}
+
+.calculators-tools-grid {
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+}
+
+.calculators-tool-link {
+  text-decoration: none;
+  background: #f0f0f0;
+  padding: 16px;
+  border-radius: 6px;
+  transition: background 0.2s;
+}
+
+.calculators-tool-link:hover {
+  background-color: #e0e0e0;
+}
+
+.calculators-tool-title {
+  font-weight: bold;
+  color: #007bff;
+}
+
+.calculators-tool-desc {
+  font-size: 0.9rem;
+  color: #444;
+}

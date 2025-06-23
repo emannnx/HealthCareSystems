@@ -1,59 +1,125 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { Heart, Activity } from 'lucide-react';
 import './HeartrateZone.css';
 
-export default function HeartrateZone() {
+const HeartrateZone = () => {
+  const [age, setAge] = useState('');
+  const [restingHR, setRestingHR] = useState('');
+  const [zones, setZones] = useState(null);
+
+  const calculateZones = () => {
+    if (!age) return;
+
+    const ageNum = parseInt(age);
+    const restingNum = parseInt(restingHR) || 60;
+    const maxHR = 220 - ageNum;
+    const hrReserve = maxHR - restingNum;
+
+    const calculatedZones = {
+      maxHR,
+      restingHR: restingNum,
+      zones: [
+        {
+          name: 'Active Recovery',
+          range: '50–60%',
+          bpm: `${Math.round(restingNum + hrReserve * 0.5)}–${Math.round(restingNum + hrReserve * 0.6)}`,
+          description: 'Very light activity, promotes recovery',
+        },
+        {
+          name: 'Aerobic Base',
+          range: '60–70%',
+          bpm: `${Math.round(restingNum + hrReserve * 0.6)}–${Math.round(restingNum + hrReserve * 0.7)}`,
+          description: 'Light intensity, builds aerobic base',
+        },
+        {
+          name: 'Aerobic',
+          range: '70–80%',
+          bpm: `${Math.round(restingNum + hrReserve * 0.7)}–${Math.round(restingNum + hrReserve * 0.8)}`,
+          description: 'Moderate intensity, improves efficiency',
+        },
+        {
+          name: 'Lactate Threshold',
+          range: '80–90%',
+          bpm: `${Math.round(restingNum + hrReserve * 0.8)}–${Math.round(restingNum + hrReserve * 0.9)}`,
+          description: 'Hard intensity, lactate threshold training',
+        },
+        {
+          name: 'Neuromuscular Power',
+          range: '90–100%',
+          bpm: `${Math.round(restingNum + hrReserve * 0.9)}–${maxHR}`,
+          description: 'Very hard intensity, anaerobic power',
+        },
+      ],
+    };
+
+    setZones(calculatedZones);
+  };
+
   return (
-    <div className="health-calculators">
-      <div className="heart-card">
-        <div className="heart-card-header">
-          <h3 className="heart-card-title">
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="heart-icon">
-              <path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"></path>
-            </svg>
-            Heart Rate Zones
-          </h3>
-          <div className='heart-card-des-div'>
-          <p className="heart-card-description">Calculate proper medication dosages</p>
-          <p className="heart-card-description">Coming Soon</p>
-          <p className="heart-card-description">Helps to optimize workout intensity </p>
-          </div>        </div>
+    <div className="heartrate-card">
+      <div className="heartrate-card-header">
+        <h2><Heart className="heartrate-icon" /> Heart Rate Zones Calculator</h2>
+        <p>Calculate your target heart rate zones for optimal training</p>
       </div>
 
-      {/* Calorie Calculator */}
-      <div className="heart-card">
-        <div className="heart-card-header">
-          <h3 className="heart-card-title">
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="heart-icon">
-              <path d="M22 12h-2.48a2 2 0 0 0-1.93 1.46l-2.35 8.36a.25.25 0 0 1-.48 0L9.24 2.18a.25.25 0 0 0-.48 0l-2.35 8.36A2 2 0 0 1 4.49 12H2"></path>
-            </svg>
-            Calorie Calculator
-          </h3>
-          <div className='heart-card-des-div'>
-          <p className="heart-card-description">Estimate your daily caloric needs</p>
-          <p className="heart-card-description">Coming soon</p>
-          <p className="heart-card-description">Based on your activity level and goals</p>
-          </div>        
+      <div className="heartrate-input-group">
+        <div className="heartrate-input-field">
+          <label htmlFor="age">Age (years)</label>
+          <input
+            id="age"
+            type="number"
+            value={age}
+            placeholder="Enter your age"
+            onChange={(e) => setAge(e.target.value)}
+          />
+        </div>
+        <div className="heartrate-input-field">
+          <label htmlFor="resting">Resting Heart Rate (optional)</label>
+          <input
+            id="resting"
+            type="number"
+            value={restingHR}
+            placeholder="60"
+            onChange={(e) => setRestingHR(e.target.value)}
+          />
+        </div>
+      </div>
+
+      <button
+        onClick={calculateZones}
+        className="heartrate-button"
+        disabled={!age}
+      >
+        <Activity className="heartrate-icon" /> Calculate Heart Rate Zones
+      </button>
+
+      {zones && (
+        <div className="heartrate-results">
+          <div className="heartrate-summary">
+            <h3>Your Heart Rate Profile</h3>
+            <div className="heartrate-summary-values">
+              <p>Maximum Heart Rate: <strong>{zones.maxHR} bpm</strong></p>
+              <p>Resting Heart Rate: <strong>{zones.restingHR} bpm</strong></p>
+            </div>
           </div>
-      </div>
 
-      {/* Medication Dosage */}
-      <div className="heart-card">
-        <div className="heart-card-header">
-          <h3 className="heart-card-title">
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="heart-icon">
-              <path d="m10.5 20.5 10-10a4.95 4.95 0 1 0-7-7l-10 10a4.95 4.95 0 1 0 7 7Z"></path>
-              <path d="m8.5 8.5 7 7"></path>
-            </svg>
-            Medication Dosage
-          </h3>
-        <div className='heart-card-des-div'>
-          <p className="heart-card-description">Calculate proper medication dosages</p>
-          <p className="heart-card-description">Coming soon</p>
-          <p className="heart-card-description">Always consult with your healthcare provider</p>
+          <div className="heartrate-zones">
+            <h3>Training Zones</h3>
+            {zones.zones.map((zone, i) => (
+              <div key={i} className="heartrate-zone-card">
+                <div className="heartrate-zone-header">
+                  <span className="heartrate-zone-name">{zone.name}</span>
+                  <span className="heartrate-zone-range">{zone.range}</span>
+                </div>
+                <div className="heartrate-zone-bpm">{zone.bpm} bpm</div>
+                <div className="heartrate-zone-desc">{zone.description}</div>
+              </div>
+            ))}
           </div>
         </div>
-        
-      </div>
+      )}
     </div>
   );
-}
+};
+
+export default HeartrateZone;

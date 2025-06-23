@@ -1,6 +1,9 @@
 import React, { useState, useRef, useEffect } from 'react';
 import './Telehealth.css';
 import { Send, Stethoscope, User, AlertTriangle } from 'lucide-react';
+import { GoogleGenerativeAI } from '@google/generative-ai';
+
+const API_KEY = 'AIzaSyDoQL71iv9ifvD0Y5YAwJlcq0Rm2NEMTL0';
 
 const Telehealth = () => {
   const [messages, setMessages] = useState([
@@ -8,21 +11,21 @@ const Telehealth = () => {
       id: '1',
       sender: 'doctor',
       content:
-        "Hello! I'm Dr. Sarah, your virtual health assistant. I'm here to help answer your health-related questions and provide guidance. Please note that this consultation is for informational purposes only and should not replace proper medical care. How can I assist you today?",
+        "Hello! I’m your virtual health assistant. How can I help you today?",
       timestamp: new Date(),
     },
   ]);
-
   const [newMessage, setNewMessage] = useState('');
   const [isTyping, setIsTyping] = useState(false);
   const chatContainerRef = useRef(null);
   const hasMounted = useRef(false);
 
+  const genAI = new GoogleGenerativeAI(API_KEY);
+  const model = genAI.getGenerativeModel({ model: 'models/gemini-1.5-flash' });
+
   const scrollToBottom = () => {
-    const container = chatContainerRef.current;
-    if (container) {
-      container.scrollTop = container.scrollHeight;
-    }
+    const c = chatContainerRef.current;
+    if (c) c.scrollTop = c.scrollHeight;
   };
 
   useEffect(() => {
@@ -30,43 +33,65 @@ const Telehealth = () => {
       hasMounted.current = true;
       return;
     }
-
-    const timeout = setTimeout(() => {
-      scrollToBottom();
-    }, 100); // delay ensures DOM is ready
-
-    return () => clearTimeout(timeout);
+    setTimeout(scrollToBottom, 100);
   }, [messages]);
 
-  const generateDoctorResponse = (userMessage) => {
-    const lowerMessage = userMessage.toLowerCase();
-    if (lowerMessage.includes('headache')) {
-      return "I understand you're experiencing headaches. It's important to stay hydrated and get enough rest. If the headache persists or is severe, consider seeing a healthcare professional.";
+  const splitMessage = (text) =>
+    text
+      .split('\n\n')
+      .map((part) => part.trim())
+      .filter(Boolean);
+
+  const generateAIResponse = async (userMessage) => {
+    try {
+      const prompt = `
+You are a caring virtual health assistant. Respond clearly and gently to:
+"${userMessage}"
+
+Use this structure (one thought per paragraph):
+
+What it might be – simple explanation.  
+What to do now – immediate steps and self-care.  
+Medicines – safe OTC options with dosage (e.g., "Take 500 mg ibuprofen every 6 hours").  
+See a doctor if… – serious signs to watch for.  
+End with a brief disclaimer: "This is for general information only."
+
+Avoid repeating names or legal phrases. No bullet points or markdown. Keep each paragraph concise.
+`;
+      const res = await model.generateContent(prompt);
+      return splitMessage(res.response.text());
+    } catch (err) {
+      console.error('AI error:', err);
+      return ["Sorry, I didn't understand that. Could you clarify?"];
     }
-    return 'Thank you for sharing that with me. Can you tell me more about your symptoms?';
   };
 
-  const handleSendMessage = () => {
+  const handleSendMessage = async () => {
     if (!newMessage.trim()) return;
-    const userMessage = {
-      id: Date.now().toString(),
-      sender: 'user',
-      content: newMessage,
-      timestamp: new Date(),
-    };
-    setMessages((prev) => [...prev, userMessage]);
+
+    setMessages((prev) => [
+      ...prev,
+      { id: Date.now().toString(), sender: 'user', content: newMessage, timestamp: new Date() },
+    ]);
     setNewMessage('');
     setIsTyping(true);
-    setTimeout(() => {
-      const doctorResponse = {
-        id: (Date.now() + 1).toString(),
-        sender: 'doctor',
-        content: generateDoctorResponse(newMessage),
-        timestamp: new Date(),
-      };
-      setMessages((prev) => [...prev, doctorResponse]);
-      setIsTyping(false);
-    }, 2000);
+
+    const aiChunks = await generateAIResponse(newMessage);
+
+    for (let i = 0; i < aiChunks.length; i++) {
+      await new Promise((resolve) => setTimeout(resolve, 1200));
+      setMessages((prev) => [
+        ...prev,
+        {
+          id: (Date.now() + i + 1).toString(),
+          sender: 'doctor',
+          content: aiChunks[i],
+          timestamp: new Date(),
+        },
+      ]);
+    }
+
+    setIsTyping(false);
   };
 
   return (
@@ -79,7 +104,7 @@ const Telehealth = () => {
               Chat with Dr. Sarah
             </h1>
             <p className="telehealth-description">
-              Get professional health guidance from our AI-powered virtual doctor.
+              Friendly, step‑by‑step health guidance.
             </p>
           </div>
 
@@ -88,7 +113,7 @@ const Telehealth = () => {
             <div className="telehealth-disclaimer-text">
               <p className="telehealth-disclaimer-title">Important Disclaimer</p>
               <p>
-                This AI assistant provides general health information only and does not replace the need for a licensed medical professional.
+                This assistant provides general health information only and cannot replace professional medical advice.
               </p>
             </div>
           </div>
@@ -98,23 +123,23 @@ const Telehealth = () => {
               <div className="telehealth-avatar doctor">
                 <Stethoscope className="telehealth-icon" />
               </div>
-              Dr. Sarah - Virtual Health Assistant <span className="telehealth-online-status">● Online</span>
+              VirtuCare Assistant <span className="telehealth-online-status">● Online</span>
             </div>
 
             <div className="telehealth-messages" ref={chatContainerRef}>
-              {messages.map((message) => (
-                <div key={message.id} className={`telehealth-message ${message.sender}`}>
+              {messages.map((m) => (
+                <div key={m.id} className={`telehealth-message ${m.sender}`}>
                   <div className="telehealth-avatar">
-                    {message.sender === 'user' ? (
+                    {m.sender === 'user' ? (
                       <User className="telehealth-icon" />
                     ) : (
                       <Stethoscope className="telehealth-icon" />
                     )}
                   </div>
                   <div className="telehealth-message-content">
-                    <div className="telehealth-bubble">{message.content}</div>
+                    <div className="telehealth-bubble">{m.content}</div>
                     <div className="telehealth-timestamp">
-                      {message.timestamp.toLocaleTimeString()}
+                      {m.timestamp.toLocaleTimeString()}
                     </div>
                   </div>
                 </div>
@@ -125,9 +150,7 @@ const Telehealth = () => {
                     <Stethoscope className="telehealth-icon" />
                   </div>
                   <div className="telehealth-bubble typing">
-                    <span className="dot"></span>
-                    <span className="dot"></span>
-                    <span className="dot"></span>
+                    <span className="dot"></span><span className="dot"></span><span className="dot"></span>
                   </div>
                 </div>
               )}
@@ -136,10 +159,10 @@ const Telehealth = () => {
             <div className="telehealth-input-wrapper">
               <input
                 className="telehealth-input"
-                placeholder="Describe your symptoms..."
                 value={newMessage}
                 onChange={(e) => setNewMessage(e.target.value)}
                 onKeyPress={(e) => e.key === 'Enter' && !e.shiftKey && handleSendMessage()}
+                placeholder="Describe your symptoms..."
                 disabled={isTyping}
               />
               <button

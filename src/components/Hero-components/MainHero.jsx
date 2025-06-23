@@ -4,6 +4,7 @@ import { Link, useLocation } from 'react-router-dom';
 import { motion } from 'framer-motion'
 import { useDarkMode } from '../DarkModeContext';
 import photo from '/src/components/Hero-components/photo.png';
+import videoFile from '/src/components/Hero-components/videoplayback.mp4';
 import AuthModal from '/src/Pages/AuthModal';
 import { useAuth } from '../AuthContext';
 
@@ -140,8 +141,19 @@ const MainHero = ({ onOpenAuth }) => {
           </div>
         </motion.div>
 
-        <div className="hero-section">
-          <img className="hero-image" src={photo} alt="Hero" />
+        <div className="hero-wrappers">
+          {/* <img className="hero-image" src={photo} alt="Hero" /> */}
+          <video
+  className="hero-video"
+  src={videoFile}
+  muted
+  autoPlay
+  loop
+  playsInline
+  preload="metadata"
+/>
+
+
         </div>
       </div>
 

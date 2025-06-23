@@ -1,11 +1,22 @@
 /* Redesigned Community.css with enhanced layout, spacing, visual hierarchy, and responsiveness */
 
 .community-wrapper {
-    padding: 2rem;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background-color: #f5f7fa;
-    color: #222;
+  margin: 0 auto; /* centers horizontally */
+  padding: 2rem;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #f5f7fa;
+  color: #222;
+  display: block;
+  width: 100%;
+}
+
+/* Apply max-width only for medium-sized screens and up (typically laptops) */
+@media (min-width: 768px) {
+  .community-wrapper {
+    max-width: 56rem;
   }
+}
+
 
   /* === Wrapper === */
 .community-header {

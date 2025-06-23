@@ -1,0 +1,274 @@
+.exercise-container{
+    padding: 2rem;
+    font-family: sans-serif;
+    max-width: 80rem;
+    margin: 0 auto;
+  }
+  
+  .exercise-main-content {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    max-width: 100%;
+}
+
+.exercise-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* exactly 3 columns */
+    gap: 1.5rem;
+    margin-top: 2rem;
+  }
+  
+
+.exercise-header {
+    text-align: center;
+    margin-bottom: 2rem;
+  }
+  
+  .exercise-title {
+    font-size: 1.875rem; /* 3xl */
+    font-weight: 700;
+    color: var(--foreground, #111);
+    transition: color 0.3s ease;
+    margin-bottom: 1rem;
+  }
+  
+  .exercise-subtitle {
+    color: var(--muted-foreground, #666);
+    max-width: 42rem;
+    margin-left: auto;
+    margin-right: auto;
+    transition: color 0.3s ease;
+    line-height: 1.6;
+  }
+  
+  .exercise-search-block {
+    margin-bottom: 2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+  
+  .exercise-search-bar {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+  
+  @media (min-width: 768px) {
+    .exercise-search-bar {
+      flex-direction: row;
+    }
+  }
+  
+  .exercise-search-input-wrapper {
+    position: relative;
+    flex: 1;
+  }
+  
+  .exercise-search-icon {
+    position: absolute;
+    left: 0.75rem;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--muted-foreground, #888);
+    width: 1rem;
+    height: 1rem;
+    pointer-events: none;
+  }
+  
+  .exercise-search-input {
+    padding-left: 2.5rem;
+    padding: 0.5rem 1rem;
+    width: 100%;
+    border: 1px solid #ccc;
+    border-radius: 0.5rem;
+    font-size: 1rem;
+  }
+  
+  .exercise-condition-btn {
+    padding: 0.5rem 1rem;
+    border-radius: 0.5rem;
+    border: 1px solid #ccc;
+    background-color: white;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: background-color 0.3s ease;
+  }
+  
+  .exercise-condition-btn.active {
+    background-color: #007bff;
+    color: white;
+    border-color: #007bff;
+  }
+  
+  .exercise-filters {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+  
+  .exercise-filter-badge {
+    display: inline-block;
+    padding: 0.25rem 0.75rem;
+    border-radius: 9999px;
+    font-size: 0.875rem;
+    font-weight: 500;
+    background-color: #f3f4f6; /* light gray */
+    color: #333;
+    cursor: pointer;
+    border: 1px solid transparent;
+    transition: background-color 0.3s ease, color 0.3s ease;
+  }
+  
+  .exercise-filter-badge:hover {
+    background-color: #d6e4ff; /* soft blue hover */
+  }
+  
+  .exercise-filter-badge.active {
+    background-color: #007bff;
+    color: white;
+    border-color: #007bff;
+  }
+  
+
+  .exercise-card {
+    border: 1px solid #ddd;
+    border-radius: 0.5rem;
+    padding: 1rem;
+    margin-bottom: 1rem;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+    transition: box-shadow 0.3s;
+  }
+  
+  .exercise-card:hover {
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  }
+  
+  .exercise-card-header {
+    margin-bottom: 1rem;
+  }
+  
+  .exercise-card-header-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 0.5rem;
+  }
+  
+  .exercise-card-title {
+    font-size: 1.125rem;
+    font-weight: 600;
+    margin: 0;
+  }
+  
+  .exercise-card-description {
+    color: #666;
+    font-size: 0.95rem;
+  }
+  
+  .exercise-card-content {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+  
+  .exercise-meta {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.875rem;
+    color: #555;
+  }
+  
+  .exercise-meta-item {
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+  }
+  
+  .exercise-section-title {
+    font-weight: 500;
+    font-size: 0.9rem;
+    margin-bottom: 0.25rem;
+  }
+  
+  .exercise-condition-badges {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+  }
+  
+  .exercise-badge {
+    background-color: #f0f0f0;
+    padding: 0.25rem 0.5rem;
+    font-size: 0.75rem;
+    border-radius: 999px;
+    border: 1px solid #ccc;
+  }
+  
+  .exercise-badge-secondary {
+    background-color: #e8f0ff;
+    color: #003366;
+    padding: 0.25rem 0.5rem;
+    font-size: 0.75rem;
+    border-radius: 999px;
+    border: 1px solid #bcd;
+  }
+  
+  .exercise-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+    color: #666;
+    font-size: 0.875rem;
+  }
+  
+  .exercise-list-item {
+    display: flex;
+    align-items: start;
+  }
+  
+  .exercise-dot {
+    width: 0.4rem;
+    height: 0.4rem;
+    margin-top: 0.4rem;
+    margin-right: 0.5rem;
+    background-color: #007bff;
+    border-radius: 999px;
+    flex-shrink: 0;
+  }
+  
+  .exercise-step-number {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #e6f0ff;
+    color: #007bff;
+    width: 1.25rem;
+    height: 1.25rem;
+    font-size: 0.75rem;
+    border-radius: 0.25rem;
+    margin-right: 0.5rem;
+    flex-shrink: 0;
+  }
+  
+  .exercise-button {
+    width: 100%;
+    padding: 0.5rem;
+    font-size: 0.9rem;
+    background-color: white;
+    color: #007bff;
+    border: 1px solid #007bff;
+    border-radius: 0.375rem;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  
+  .exercise-button:hover {
+    background-color: #007bff;
+    color: white;
+  }
+  

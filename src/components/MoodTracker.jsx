@@ -7,7 +7,7 @@ const MoodTracker = () => {
     <div className="mood-tracker-container">
       <header className="tracker-header">
         <h1>🧠 Mood Tracker</h1>
-        <p className="tracker-sub">How are you feeling today?</p>
+        <p className="tracker-sub">Exclusive to our app</p>
       </header>
 
       <section className="mood-visual-section">

@@ -1,8 +1,31 @@
 import React, { useState } from 'react'
 import './HealthDashboard.css'
 import { Link } from 'react-router-dom'
+import {
+  LineChart,
+  Line,
+  XAxis,
+  YAxis,
+  Tooltip,
+  CartesianGrid,
+  BarChart as RechartsBarChart,
+  Bar,
+  ResponsiveContainer
+} from 'recharts';
 
 const HealthDashboard = () => {
+
+  const weeklyTrends = {
+    steps: [
+      { day: 'Mon', steps: 8500, water: 7, sleep: 7.5, weight: 70.2 },
+      { day: 'Tue', steps: 9200, water: 8, sleep: 7.0, weight: 70.1 },
+      { day: 'Wed', steps: 7800, water: 6, sleep: 8.0, weight: 70.0 },
+      { day: 'Thu', steps: 10100, water: 9, sleep: 7.5, weight: 69.9 },
+      { day: 'Fri', steps: 9500, water: 7, sleep: 6.5, weight: 69.8 },
+      { day: 'Sat', steps: 11200, water: 8, sleep: 8.5, weight: 69.8 },
+      { day: 'Sun', steps: 6800, water: 6, sleep: 9.0, weight: 69.7 }
+    ]
+  };
 
   const [selectedToggle, setSelectedToggle] = useState('weekly');
 
@@ -531,7 +554,7 @@ const HealthDashboard = () => {
     </div>
     </div>
 
-    <h2 className="health-insights-heading">Health Insights</h2>
+    {/* <h2 className="health-insights-heading">Health Insights</h2>
 
     <div className="chart-card">
   <div className="chart-card-header">
@@ -563,7 +586,72 @@ const HealthDashboard = () => {
       </p>
     </div>
   </div>
-</div>
+
+  
+
+
+</div> */}
+
+<div className="dash-trends-wrapper">
+      <h2 className="dash-trends-title">
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width="24"
+        height="24"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        className="chart-icon"
+      >
+        <line x1="12" x2="12" y1="20" y2="10" />
+        <line x1="18" x2="18" y1="20" y2="4" />
+        <line x1="6" x2="6" y1="20" y2="16" />
+      </svg>Weekly Health Trends</h2>
+
+      <div className="dash-trends-grid">
+        {/* Daily Steps Card */}
+        <div className="dash-card">
+          <div className="dash-card-header">
+            <h3 className="dash-card-title">Daily Steps</h3>
+            <p className="dash-card-description">Your step count over the past week</p>
+          </div>
+          <div className="dash-card-content">
+            <ResponsiveContainer width="100%" height={200}>
+              <LineChart data={weeklyTrends.steps}>
+                <CartesianGrid strokeDasharray="3 3" />
+                <XAxis dataKey="day" />
+                <YAxis />
+                <Tooltip />
+                <Line type="monotone" dataKey="steps" stroke="hsl(var(--primary))" strokeWidth={2} />
+              </LineChart>
+            </ResponsiveContainer>
+          </div>
+        </div>
+
+        {/* Sleep & Water Card */}
+        <div className="dash-card">
+          <div className="dash-card-header">
+            <h3 className="dash-card-title">Sleep & Water</h3>
+            <p className="dash-card-description">Sleep hours and water intake tracking</p>
+          </div>
+          <div className="dash-card-content">
+            <ResponsiveContainer width="100%" height={200}>
+              <RechartsBarChart data={weeklyTrends.steps}>
+                <CartesianGrid strokeDasharray="3 3" />
+                <XAxis dataKey="day" />
+                <YAxis />
+                <Tooltip />
+                <Bar dataKey="sleep" fill="hsl(var(--primary))" />
+                <Bar dataKey="water" fill="hsl(var(--secondary))" />
+              </RechartsBarChart>
+            </ResponsiveContainer>
+          </div>
+        </div>
+      </div>
+    </div>
 
     </div>
     </div>
