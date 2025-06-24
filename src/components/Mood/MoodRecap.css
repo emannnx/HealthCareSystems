@@ -1,0 +1,119 @@
+.mood-recap-container {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+  
+  .mood-recap-empty {
+    text-align: center;
+    padding: 2rem 0;
+  }
+  
+  .mood-text-muted {
+    color: #6b7280;
+  }
+  
+  .mood-card-content {
+    padding-top: 1.5rem;
+  }
+  
+  .mood-section {
+    display: flex;
+    gap: 0.75rem;
+    align-items: start;
+  }
+  
+  .mood-icon {
+    width: 1.25rem;
+    height: 1.25rem;
+    margin-top: 0.25rem;
+    flex-shrink: 0;
+  }
+  
+  .mood-orange {
+    color: #f97316;
+  }
+  
+  .mood-title {
+    font-weight: 500;
+    margin-bottom: 0.75rem;
+  }
+  
+  .mood-summary {
+    font-size: 0.875rem;
+    margin-bottom: 1rem;
+  }
+  
+  .mood-summary-count,
+  .mood-summary-label {
+    font-weight: 500;
+    text-transform: capitalize;
+  }
+  
+  .mood-week-grid {
+    display: flex;
+    gap: 0.25rem;
+    margin-top: 0.5rem;
+  }
+  
+  .mood-day-box {
+    flex: 1;
+    height: 2.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 0.25rem;
+    font-size: 1.125rem;
+  }
+  
+  .mood-day-filled {
+    background-color: #e5e7eb;
+  }
+  
+  .mood-day-empty {
+    background-color: #f3f4f6;
+  }
+  
+  .mood-day-placeholder {
+    color: #9ca3af;
+    font-size: 0.75rem;
+  }
+  
+  .mood-quote {
+    border-left: 4px solid rgba(59, 130, 246, 0.3);
+    padding-left: 1rem;
+    font-style: italic;
+    color: #6b7280;
+  }
+  
+  .mood-quote-date {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 0.5rem;
+    font-size: 0.875rem;
+  }
+  
+  .mood-streak-bars {
+    display: flex;
+    gap: 0.25rem;
+    margin-top: 1rem;
+  }
+  
+  .mood-streak-bar {
+    flex: 1;
+    height: 0.5rem;
+    border-radius: 0.25rem;
+  }
+  
+  .mood-streak-filled {
+    background-color: #f97316;
+  }
+  
+  .mood-streak-empty {
+    background-color: #e5e7eb;
+  }
+  
+  .mood-bold {
+    font-weight: 500;
+  }
+  

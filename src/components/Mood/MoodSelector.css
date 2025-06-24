@@ -1,0 +1,46 @@
+.mmood-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0.75rem;
+  }
+  
+  @media (min-width: 768px) {
+    .mmood-grid {
+      grid-template-columns: repeat(9, 1fr);
+    }
+  }
+  
+  .mmood-button {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem;
+    border-radius: 0.5rem;
+    background-color: #1FAD53;
+    transition: all 0.2s ease;
+    cursor: pointer;
+    border: none;
+  }
+  
+  .mmood-button:hover {
+    background-color: #4BBE75;
+  }
+  
+  .mmood-button--active {
+    background-color: #0070f3;
+    color: white;
+    transform: scale(1.05);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+  }
+  
+  .mmood-emoji {
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
+  }
+  
+  .mmood-label {
+    font-size: 0.75rem;
+    font-weight: 500;
+  }
+  

@@ -1,0 +1,110 @@
+.healthhubs-container {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.healthhubs-container.dark .heading {
+  color: #ffffff;
+}
+
+.healthhubs-container.dark .feature-title {
+  color: #ffffff;
+}
+
+.healthhub-wrapper{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  width: 80%;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.heading {
+  font-size: 2rem;
+  font-weight: 800;
+  color: #111827;
+}
+
+.subtext {
+  margin-top: 0.75rem;
+  max-width: 640px;
+  margin-left: auto;
+  margin-right: auto;
+  font-size: 1.25rem;
+  color: #6B7280;
+}
+
+.features-grid {
+  margin-top: 3rem;
+  display: grid;
+  gap: 2rem;
+  grid-template-columns: 1fr;
+  width: 100%; /* Make sure grid spans full width */
+}
+
+@media (min-width: 640px) {
+  .features-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 1024px) {
+  .features-grid {
+    grid-template-columns: repeat(4, 1fr);
+    display: grid;
+    width: 100%
+  }
+}
+
+.feature-item1 {
+  text-align: center;
+  display: block;
+  transition: transform 0.3s ease-in-out;
+}
+
+.feature-item1:hover {
+  transform: translateY(-10px);
+}
+
+.icon-wrapper {
+  margin: 0 auto;
+  height: 64px;
+  width: 64px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #E0F2FE;
+  border-radius: 50%;
+}
+
+.icon-wrapper.dark {
+  background-color: #4B5563;
+}
+
+.icon {
+  height: 32px;
+  width: 32px;
+  color: #0284C7;
+}
+
+.feature-title {
+  margin-top: 1rem;
+  font-size: 1.125rem;
+  font-weight: 500;
+  color: #111827;
+}
+
+.feature-text {
+  margin-top: 0.5rem;
+  font-size: 1rem;
+  color: #6B7280;
+}
+
+.feature-text.dark {
+  color: #d1d5db;
+}

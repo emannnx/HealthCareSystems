@@ -1,0 +1,109 @@
+.mood-calendar-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+  
+  @media (min-width: 1024px) {
+    .mood-calendar-wrapper {
+      flex-direction: row;
+    }
+  }
+  
+  .mood-calendar-panel,
+  .mood-entry-panel {
+    flex: 1;
+  }
+  
+  .mood-calendar {
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    padding: 1rem;
+  }
+  
+  .mood-indicator {
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    margin-bottom: 0.25rem;
+  }
+  
+  .mood-color-green { background-color: #22c55e; }
+  .mood-color-blue { background-color: #3b82f6; }
+  .mood-color-amber { background-color: #f59e0b; }
+  .mood-color-gray { background-color: #9ca3af; }
+  .mood-color-yellow { background-color: #facc15; }
+  .mood-color-neutral { background-color: #d1d5db; }
+  .mood-color-teal { background-color: #14b8a6; }
+  .mood-color-red { background-color: #ef4444; }
+  .mood-color-purple { background-color: #a855f7; }
+  .mood-color-default { background-color: #e5e7eb; }
+  
+  .mood-entry-card {
+    padding-top: 1.5rem;
+  }
+  
+  .mood-entry-header {
+    display: flex;
+    gap: 1rem;
+  }
+  
+  .mood-emoji {
+    font-size: 2rem;
+  }
+  
+  .mood-entry-content {
+    flex: 1;
+  }
+  
+  .mood-entry-title {
+    display: flex;
+    justify-content: space-between;
+  }
+  
+  .mood-entry-mood {
+    text-transform: capitalize;
+    font-size: 1.125rem;
+    font-weight: 500;
+  }
+  
+  .mood-entry-meta {
+    font-size: 0.875rem;
+    color: #6b7280;
+  }
+  
+  .mood-entry-note {
+    margin-top: 0.5rem;
+  }
+  
+  .mood-entry-note-muted {
+    margin-top: 0.5rem;
+    font-style: italic;
+    color: #9ca3af;
+  }
+  
+  .mood-empty-state {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    background-color: #f3f4f6;
+    border-radius: 0.5rem;
+    padding: 1.5rem;
+    text-align: center;
+  }
+  
+  .mood-empty-text {
+    color: #6b7280;
+    margin-bottom: 0.5rem;
+  }
+  
+  .mood-empty-date {
+    font-weight: 500;
+  }
+  

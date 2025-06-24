@@ -1,0 +1,128 @@
+.mmood-calendar-wrapper {
+    padding: 12px;
+  }
+  
+  .mmood-calendar-months {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+  
+  @media (min-width: 640px) {
+    .mmood-calendar-months {
+      flex-direction: row;
+      gap: 16px;
+    }
+  }
+  
+  .mmood-calendar-month {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+  
+  .mmood-calendar-caption {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    padding-top: 4px;
+  }
+  
+  .mmood-calendar-caption-label {
+    font-size: 0.875rem;
+    font-weight: 500;
+  }
+  
+  .mmood-calendar-nav {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+  }
+  
+  .mmood-calendar-nav-button {
+    width: 28px;
+    height: 28px;
+    background: transparent;
+    border: 1px solid #ccc;
+    opacity: 0.5;
+    transition: opacity 0.2s ease;
+  }
+  
+  .mmood-calendar-nav-button:hover {
+    opacity: 1;
+  }
+  
+  .mmood-calendar-nav-button-previous {
+    position: absolute;
+    left: 4px;
+  }
+  
+  .mmood-calendar-nav-button-next {
+    position: absolute;
+    right: 4px;
+  }
+  
+  .mmood-calendar-table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  
+  .mmood-calendar-head-row,
+  .mmood-calendar-row {
+    display: flex;
+    width: 100%;
+    margin-top: 8px;
+  }
+  
+  .mmood-calendar-head-cell {
+    width: 36px;
+    font-size: 0.8rem;
+    font-weight: 400;
+    text-align: center;
+    border-radius: 4px;
+    color: #999;
+  }
+  
+  .mmood-calendar-cell {
+    position: relative;
+    padding: 0;
+    width: 36px;
+    height: 36px;
+    text-align: center;
+  }
+  
+  .mmood-calendar-day {
+    width: 36px;
+    height: 36px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    opacity: 0.9;
+  }
+  
+  .mmood-calendar-day-selected {
+    background: #2563eb;
+    color: white;
+  }
+  
+  .mmood-calendar-day-today {
+    background: #f3f4f6;
+    color: #111827;
+  }
+  
+  .mmood-calendar-day-outside,
+  .mmood-calendar-day-disabled {
+    color: #aaa;
+    opacity: 0.5;
+  }
+  
+  .mmood-calendar-day-hidden {
+    visibility: hidden;
+  }
+  
+  .mmood-calendar-icon {
+    width: 16px;
+    height: 16px;
+  }
+      

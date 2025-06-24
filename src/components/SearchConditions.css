@@ -1,0 +1,266 @@
+.containers {
+    margin: 0 auto;
+    padding: 4rem 1rem;
+    width: 70%;
+  }
+
+  @media screen and (max-width: 768px) {
+    .containers {
+      width: 100%;
+      /* padding: 1rem 1rem 5rem 1rem; */
+    }
+  }
+  
+  .title {
+    font-size: 2rem;
+    font-weight: bold;
+    color: #1f2937;
+    margin-bottom: 1.5rem;
+    opacity: 0;
+    animation: fadeIn 0.6s ease-out forwards;
+  }
+  
+  .search-form {
+    margin-bottom: 2rem;
+    animation: slideUp 0.6s ease-out forwards;
+  }
+  
+  .form-row {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    width: 100%;
+  }
+  
+  @media (min-width: 640px) {
+    .form-row {
+      flex-direction: row;
+    }
+  }
+  
+  .input-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+    width: 100%;
+  }
+
+  .input-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+    width: 100%;
+  }
+  
+  .searchs-icons {
+    position: absolute;
+    left: 12px; /* consistent horizontal spacing */
+    top: 50%; /* always centers vertically */
+    transform: translateY(-50%);
+    height: 20px;
+    width: 20px;
+    color: #6b7280;
+    pointer-events: none;
+  }
+  
+  .searchs-inputs {
+    width: 100%;
+    padding: 0.75rem 1rem 0.75rem 2.5rem; /* left padding makes space for icon */
+    border: 1px solid #d1d5db;
+    border-radius: 0.375rem;
+    font-size: 1rem;
+    color: #1f2937;
+    background-color: #ffffff;
+    outline: none;
+    box-sizing: border-box;
+  }
+  
+  .search-buttons {
+    height: 50px;
+    margin: 0;
+    background-color: #0ea2f1;
+    color: white;
+    font-size: 0.875rem;
+    font-weight: 500;
+    border: none;
+    border-radius: 0.375rem;
+    cursor: pointer;
+    transition: background-color 0.2s;
+    outline: none;
+  }
+  
+  .search-buttons:hover {
+    background-color: #2563eb;
+  }
+  
+  /* Remove the border on mouse click */
+  .search-buttons:focus {
+    outline: none;
+  }
+  
+  /* Add a subtle outline only on keyboard focus (accessible) */
+  .search-buttons:focus-visible {
+    outline: 2px solid #ffffff;
+    outline-offset: 2px;
+  }
+  
+  
+  .search-info {
+    text-align: center;
+    animation: fadeIn 1s ease-out forwards;
+    width: 100%;
+  }
+  
+  .icon-circle {
+    width: 64px;
+    height: 64px;
+    margin: 0 auto 1rem;
+    border-radius: 9999px;
+    background-color: rgba(37, 99, 235, 0.1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .search-info-icon {
+    width: 32px;
+    height: 32px;
+    color: #2563eb;
+  }
+  
+  .search-heading {
+    font-size: 1.25rem;
+    font-weight: 500;
+    color: #1f2937;
+    margin-bottom: 0.5rem;
+  }
+  
+  .search-description {
+    color: #6b7280;
+    font-size: 1rem;
+  }
+  
+  @keyframes fadeIn {
+    to {
+      opacity: 1;
+    }
+  }
+  
+  @keyframes slideUp {
+    from {
+      transform: translateY(20px);
+      opacity: 0;
+    }
+    to {
+      transform: translateY(0);
+      opacity: 1;
+    }
+  }
+  
+
+  .result-card {
+    background-color: #f9f9f9;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+    margin-top: 20px;
+  }
+  
+  .result-card h3 {
+    margin-bottom: 10px;
+    color: #333;
+  }
+  
+  .result-card p {
+    color: #555;
+    line-height: 1.5;
+  }
+  
+
+  .health-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 24px;
+    margin-top: 32px;
+  }
+  
+  @media (min-width: 768px) {
+    .health-grid {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+  
+  @media (min-width: 1024px) {
+    .health-grid {
+      grid-template-columns: 1fr 1fr 1fr;
+    }
+  }
+  
+  .health-cards {
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    background-color: #fff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    padding: 16px;
+  }
+  
+  .health-card:hover {
+    border-color: #3b82f6;
+    box-shadow: 0 4px 8px rgba(59, 130, 246, 0.2);
+  }
+  
+  .card-headerr {
+    /* padding: 24px; */
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    text-align: left;
+  }
+  
+  .card-title {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: #111827;
+    margin: 0 !important;
+  }
+  
+  .card-descriptions {
+    font-size: 0.9rem;
+    color: #6b7280;
+    margin: 0;
+  }
+
+  .loader-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 2rem;
+  }
+  
+  .loader {
+    width: fit-content;
+    font-weight: bold;
+    font-family: monospace;
+    font-size: 30px;
+    background: radial-gradient(circle closest-side,#000 94%,#0000) right/calc(200% - 1em) 100%;
+    animation: l24 1s infinite alternate linear;
+  }
+  
+  .loader::before {
+    content: "Loading...";
+    line-height: 1em;
+    color: #0000;
+    background: inherit;
+    background-image: radial-gradient(circle closest-side,#fff 94%,#000);
+    -webkit-background-clip: text;
+    background-clip: text;
+  }
+  
+  @keyframes l24 {
+    100% {
+      background-position: left;
+    }
+  }
+  
+
+  

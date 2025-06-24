@@ -1,0 +1,653 @@
+/* App.css */
+
+#root {
+  width: 100%;
+  outline: none;
+  background-color: #fff;
+  scroll-behavior: smooth;
+  overflow-y: auto;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+
+* {
+  outline: none;
+  box-sizing: border-box;
+}
+
+.container {
+  background-color: white;
+}
+
+.app-layout {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.content {
+  flex: 1;
+  margin-top: 4.1rem;
+  background-color: #F4F7FA;
+}
+
+.content.dark{
+  background-color: #020817;
+}
+
+.content.dark .containers .title {
+  background-color: #020817;
+  color: #fff;
+}
+
+.content.dark .containers .search-heading{
+  background-color: #020817;
+  color: #fff;
+}
+
+.content.dark .containers .searchs-inputs{
+  background-color: #020817;
+  color: #fff;
+  border: 1px solid #1E293B;
+}
+
+
+.content.dark .containers .searchs-inputs:placeholer{
+  color: #1E293B;
+}
+
+.content.dark .containers .search-info .health-card{
+  background-color: #020817;
+  color: #fff;
+}
+
+.content.dark .containers .search-info .health-cards{
+  background-color: #020817;
+  color: #fff;
+  border: 1px solid #1E293B;
+}
+
+.content.dark .containers .symptoms-section li{
+  color: #fff;
+}
+
+.content.dark .containers .symptoms-section svg{
+  color: #fff;
+}
+
+.content.dark .containers .search-info .card-title{
+  background-color: #020817;
+  color: #fff;
+}
+
+.content.dark .containers .search-info .tabs-container{
+  background-color: #1F2937;
+  color: #fff;
+  border: 1px solid #1E293B;
+}
+
+.content.dark .containers .search-info .text-foreground{
+  color: #fff;
+}
+
+.content.dark .containers .search-info .tabs-container .tab.active{
+  background-color: #020817;
+  color: #fff;
+}
+
+.content.dark .containers .search-info .tabs-container .tab.active svg{
+  color: #fff;
+}
+
+.content.dark .containers .search-info .tabs-container .tab.active .tab-label{
+  color: #fff;
+}
+
+.content.dark .containers .search-info .tabs-container svg{
+  color: #94A3B8;
+}
+
+.content.dark .containers .search-info .tabs-container .tab-label{
+  color: #94A3B8;
+}
+
+.content.dark .containers .search-info .health-card:hover{
+  background-color: #020817;
+  color: #fff;
+  border: 1px solid #fff;
+  box-shadow: none;
+}
+
+.content.dark .health-calculators-container{
+  background-color: #020817;
+  color: #fff;
+}
+
+.content.dark .tag{
+  background-color: #1E293B;
+  color: #fff;
+}
+
+.content.dark .remove-tag{
+  background-color: #1E293B;
+  color: #fff;
+}
+
+.content.dark .custom-textarea{
+  background-color: #1E293B;
+  border: 1px solid #1E293B;
+}
+
+.content.dark .health-calculators-container .calculator-card{
+  background-color: #020817 !important;
+  color: #fff;
+  border: 1px solid #1E293B;
+}
+
+.content.dark .health-calculators-container .calculator-card .btns.secondary{
+  background-color: #020817;
+  color: #fff;
+  border: 1px solid #1E293B;
+}
+
+.content.dark .health-calculators-container .calculator-card .btns.primary{
+  color: #020817;
+  border: 1px solid #1E293B;
+}
+
+.content.dark .health-calculators-container h3{
+  color: #fff;
+}
+
+.content.dark .health-calculators-container h1{
+  color: #fff;
+}
+
+.content.dark .health-calculators-container .section-title{
+  color: #fff;
+}
+
+.content.dark .health-calculators-container label{
+  color: #fff;
+}
+
+.content.dark .health-calculators-container .inputtttt{
+  background-color: #020817;
+  color: #fff;
+  border: 1px solid #1E293B;
+}
+
+.content.dark .health-calculators-container .info-boxes{
+  background-color: #020817;
+  color: #fff;
+  border: 1px solid #1E293B;
+}
+
+.content.dark .heart-card-header{
+  background-color: #1E293B;
+  color: #fff;
+  border: 1px solid #1E293B;
+}
+
+.content.dark .my-health-container h1{
+  color: #fff;
+}
+
+.content.dark .my-health-container h2{
+  color: #fff;
+}
+
+.content.dark .my-health-container .ccards{
+  background-color: #020817;
+  color: #fff;
+  border: 1px solid #1E293B;
+}
+
+.content.dark .my-health-container .cardd{
+  background-color: #020817;
+  color: #fff;
+  border: 1px solid #1E293B;
+}
+
+.content.dark .my-health-container .cardd h3{
+  background-color: #020817;
+  color: #fff;
+}
+
+.content.dark .navbar-container .navbar-menu{
+  background-color: #020817;
+  color: #fff;
+}
+
+.content.dark .my-health-container .cardd .info-box{
+  background-color: #1E293B;
+  color: #fff;
+}
+
+.content.dark .my-health-container .toggle-button.active{
+  background-color: #1E293B;
+  color: #fff;
+}
+
+.content.dark .my-health-container .toggle-button{
+  /* background-color: #1E293B; */
+  color: #fff;
+}
+
+.content.dark .my-health-container .toggle-button:hover{
+  background-color: #1E293B;
+  color: #94A3B8;
+}
+
+.content.dark .my-health-container .health-cardss{
+  background-color: #020817;
+  color: #fff;
+  border: 1px solid #1E293B;
+}
+
+.content.dark .my-health-container .the-card{
+  background-color: #020817;
+  color: #fff;
+  border: 1px solid #1E293B;
+}
+
+.content.dark .my-health-container .the-card h3{
+  background-color: #020817;
+  color: #fff;
+}
+
+.content.dark .my-health-container .the-card .task.pending span{
+  color: #888;
+}
+
+.content.dark .my-health-container .action-card{
+  background-color: #020817;
+  color: #fff;
+  border: 1px solid #1E293B;
+}
+
+.content.dark .my-health-container .action-card h3{
+  background-color: #020817;
+  color: #fff;
+}
+
+.content.dark .my-health-container .action-card .action-text{
+  background-color: #020817;
+  color: #888;
+}
+
+.content.dark .my-health-container .view-plan-btn{
+  background-color: #222;
+  color: #fff;
+}
+
+.content.dark .my-health-container .view-plan-btn:hover{
+  background-color: #1E293B;;
+}
+
+.content.dark .my-health-container .chart-card{
+  background-color: #020817;
+  color: #fff;
+  border: 1px solid #1E293B;
+}
+
+.content.dark .my-health-container .chart-card-title{
+  color: #fff;
+}
+
+.content.dark .medication-tracker-container h1{
+  color: #fff;
+}
+
+.content.dark .medication-tracker-container h2{
+  color: #fff;
+}
+
+.content.dark .medication-tracker-container p{
+  color: #888;
+}
+
+.content.dark .medication-tracker-container .reminder-button{
+  border: 1px solid #1E293B;
+  color: #fff;
+}
+
+.content.dark .medication-tracker-container .add-medication-button{
+  color: #020817;
+}
+
+.content.dark .medication-tracker-container .medication-card-button-outline{
+  background-color: transparent;
+  border: 1px solid #1E293B;
+  color: #fff;
+}
+
+.content.dark .medication-tracker-container .medication-card-button-primary{
+  color: #020817;
+}
+
+.content.dark .medication-tracker-container .medication-card{
+  background-color: #020817;
+  color: #fff;
+  border: 1px solid #1E293B;
+}
+
+.content.dark .medication-tracker-container .tabs-list{
+  background-color: transparent;
+  color: #fff;
+}
+
+.content.dark .medication-tracker-container .medication-card-value{
+  background-color: transparent;
+  color: #fff;
+}
+
+.content.dark .medication-tracker-container .tab-container-wrapper{
+  background-color: #1E293B;
+  color: #fff;
+}
+
+.content.dark .medication-tracker-container .card-done{
+  background-color: #e7e7e7;
+}
+
+.content.dark .medication-tracker-container .card-done .done-text{
+  color: #020817;
+}
+
+.content.dark .medication-tracker-container .tab-triggers{
+  background-color: #1E293B;
+  color: #fff;
+}
+
+.content.dark .medication-tracker-container .tab-triggers.active{
+  background-color: #020817;
+  color: #fff;
+}
+
+.content.dark .medication-tracker-container .medication-table th{
+  color: #888;
+}
+
+.content.dark .medication-tracker-container .medication-table td{
+  color: #fff;
+  border-bottom: 1px solid #1E293B;
+}
+
+.content.dark .medication-tracker-container thead tr{
+  border-bottom: 2px solid #1E293B;
+}
+
+.content.dark .profile-container {
+  background-color: #020817;
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.1), 
+              0 0 20px rgba(255, 255, 255, 0.05);
+  border-radius: 8px;
+}
+
+.content.dark .profile-container input{
+  background-color: #1E293B;
+  border: 1px solid #1E293B;
+  color: #fff;
+}
+
+.content.dark .profile-container select{
+  background-color: #1E293B;
+  border: 1px solid #1E293B;
+  color: #fff;
+}
+
+.content.dark .profile-container .profile-containerss{
+  border-top: 1px solid #1E293B;
+}
+
+.content.dark .profile-container .health-header{
+  border-bottom: 1px solid #1E293B;
+}
+
+.content.dark .profile-container .health-title{
+  color: #fff;
+}
+
+.content.dark .profile-container h2{
+  color: #fff;
+}
+
+.content.dark .profile-container label{
+  color: #fff;
+}
+
+.content.dark .content-wrapper h1{
+  color: #fff;
+}
+
+.content.dark .content-wrapper h3{
+  color: #fff;
+}
+
+.content.dark .content-wrapper p{
+  color: #fff;
+}
+
+.content.dark .content-wrapper h2{
+  color: #fff;
+}
+
+.content.dark .content-wrapper .categories-list .category-btn{
+  background-color: #1E293B;
+  color: #fff;
+}
+
+.content.dark .content-wrapper .article-card{
+  background-color: #1E293B;
+  border: none;
+}
+
+.content.dark .content-wrapper .article-card:hover {
+  box-shadow: 0 8px 24px rgba(255, 255, 255, 0.2), 
+              0 4px 12px rgba(255, 255, 255, 0.15);
+}
+
+.content.dark .content-wrapper .article-card .article-content{
+  background-color: #1E293B;
+  color: #fff;
+}
+
+.content.dark .content-wrapper .search-input {
+  background-color: transparent;
+  border: 1px solid #1E293B;
+  color: #fff;
+}
+
+.content.dark .article-title{
+  color: #fff;
+}
+
+.content.dark .article-summary{
+  color: #888;
+}
+
+.content.dark .article-content{
+  box-shadow: 0 8px 24px rgba(255, 255, 255, 0.2), 
+              0 4px 12px rgba(255, 255, 255, 0.15);
+}
+
+.content.dark .article-content p{
+  color: #fff;
+}
+
+.content.dark .article-content h2{
+  color: #fff;
+}
+
+.content.dark .article-content li{
+  color: #fff;
+}
+
+.content.dark .calculators-bmi-result {
+  background-color: #1E293B;
+  color: #fff;
+  border: none;
+}
+
+.content.dark .dashboard-header{
+  background-color: #020817;
+}
+
+.content.dark .dashboard-title{
+  color: #fff;
+}
+
+.content.dark .completes-card{
+  background-color: #020817;
+  border: 1px solid #1E293B;
+}
+
+.content.dark .completes-card-title{
+  color: #fff;
+}
+
+.content.dark .completes{
+  background-color: #1E293B;
+  color: #fff;
+}
+
+.content.dark .completes-value{
+  color: #fff;
+}
+
+.content.dark .completess-card{
+  background-color: #020817;
+  border: 1px solid #1E293B;
+}
+
+.content.dark .completess-title {
+  color: #fff;
+}
+
+.content.dark .completess-alert-title {
+  color: #fff;
+}
+
+.content.dark .completess-recommendation-title{
+  color: #fff;
+}
+
+.content.dark .completess-reading-title{
+  color: #fff;
+}
+
+.content.dark .mood-tracker-container .mood-card{
+  background-color: #020817;
+  color: #fff;
+  border: 1px solid #1E293B;
+}
+
+.content.dark .mood-tracker-container h3{
+  color: #fff;
+}
+
+.content.dark .mood-tracker-container p{
+  color: #64748B;
+}
+
+.content.dark .mood-tracker-container .mood-label{
+  color: #fff !important;
+}
+
+.content.dark .mood-tracker-container .mood-title{
+  color: #fff;
+}
+
+.content.dark .mood-tracker-container .mood-note{
+  color: #fff !important;
+}
+
+.content.dark .bodyPartSelect{
+  background-color: #020817;
+  color: #fff;
+  border: 1px solid #1E293B;
+}
+
+.content.dark .bodyPartSelect option{
+  background-color: #020817;
+  color: #fff;
+}
+
+.content.dark .bodyPartSelect option:hover {
+  background-color: #1E293B;
+  color: #fff;
+}
+
+.content.dark .seearch-input input::placeholder {
+  color: #fff;
+}
+
+.content.dark .nutrition-title {
+  color: #fff;
+}
+
+.content.dark .nutritions-cards-container{
+  background-color: #020817;
+  color: #fff;
+  border: 1px solid #1E293B;
+}
+
+.content.dark .nutritions-cards-title {
+  color: #fff;
+}
+
+.content.dark .nutritions-cards-subtitle {
+  color: #888;
+}
+
+.content.dark .nutritions-cards-icon {
+  color: #fff;
+}
+
+@media (max-width: 768px) {
+  .content {
+    margin-top: 4rem;
+  }
+}
+
+.logo {
+  height: 6em;
+  padding: 1.5em;
+  will-change: filter;
+  transition: filter 300ms;
+}
+
+.logo:hover {
+  filter: drop-shadow(0 0 2em #646cffaa);
+}
+
+.logo.react:hover {
+  filter: drop-shadow(0 0 2em #61dafbaa);
+}
+
+@keyframes logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  a:nth-of-type(2) .logo {
+    animation: logo-spin infinite 20s linear;
+  }
+}
+
+.card {
+  padding: 2em;
+}
+
+.read-the-docs {
+  color: #888;
+}
+
+body {
+  background-color: #fff;
+}
