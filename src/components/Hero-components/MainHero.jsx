@@ -29,6 +29,8 @@ const MainHero = ({ onOpenAuth }) => {
       }, 500); // match the fade duration
     }, 3000);
 
+    
+
     return () => clearInterval(interval);
   }, []);
   
