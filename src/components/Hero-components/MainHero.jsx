@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './MainHero.css'
 import { Link, useLocation } from 'react-router-dom';
 import { motion } from 'framer-motion'
@@ -10,11 +10,35 @@ import { useAuth } from '../AuthContext';
 
 
 const MainHero = ({ onOpenAuth }) => {
+
+   const images = [
+    "https://media.istockphoto.com/id/1404179486/photo/anesthetist-working-in-operating-theatre-wearing-protecive-gear-checking-monitors-while.jpg?s=612x612&w=0&k=20&c=gecZ0b-nDIuMOvRIt8Qyam-eSx6RBdUzn5yDh0nNEvM=",
+    "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSz1n4hQ373ZYKc33fvpXpBIx2AUoaLtQr2HQ&s",
+    "https://www.eehealth.org/-/media/images/modules/blog/posts/2023/08/hospitalist-checking-patient-750x500.jpg"
+  ];
+
+   const [currentIndex, setCurrentIndex] = useState(0);
+  const [fade, setFade] = useState(true);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setFade(false); // start fade-out
+      setTimeout(() => {
+        setCurrentIndex(prev => (prev + 1) % images.length);
+        setFade(true); // start fade-in
+      }, 500); // match the fade duration
+    }, 3000);
+
+    
+
+    return () => clearInterval(interval);
+  }, []);
+  
   const { darkMode: isDarkMode } = useDarkMode();
   const [signinOpen, setSigninOpen] = useState(false);
 
   const openSignin = () => setSigninOpen(true);
-  const closeSignin = () => setSigninOpen(false);
+  const closeSignin = () => setSigninOpen(false); 
 
   const { isAuthenticated } = useAuth();
 
@@ -142,8 +166,8 @@ const MainHero = ({ onOpenAuth }) => {
         </motion.div>
 
         <div className="hero-wrappers">
-          {/* <img className="hero-image" src={photo} alt="Hero" /> */}
-          <video
+          <img className="hero-image" src={images[currentIndex]} alt="Hero Slide" />
+          {/* <video
   className="hero-video"
   src={videoFile}
   muted
@@ -151,7 +175,7 @@ const MainHero = ({ onOpenAuth }) => {
   loop
   playsInline
   preload="metadata"
-/>
+/> */}
 
 
         </div>
