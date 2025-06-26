@@ -38,7 +38,7 @@ const MainHero = ({ onOpenAuth }) => {
   const [signinOpen, setSigninOpen] = useState(false);
 
   const openSignin = () => setSigninOpen(true);
-  const closeSignin = () => setSigninOpen(false);
+  const closeSignin = () => setSigninOpen(false); 
 
   const { isAuthenticated } = useAuth();
 
